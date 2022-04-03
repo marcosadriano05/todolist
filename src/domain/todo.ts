@@ -2,7 +2,7 @@ import { TodoError } from "./todo_error.ts";
 
 export class Todo {
   private title: string;
-  description: string;
+  private description: string;
   private startDate: Date;
   private finishDate: Date;
 
@@ -15,6 +15,18 @@ export class Todo {
 
   public getTitle(): string {
     return this.title;
+  }
+
+  public setTitle(title: string) {
+    this.title = title;
+  }
+
+  public getDescription(): string {
+    return this.description;
+  }
+
+  public setDescription(description: string) {
+    this.description = description;
   }
 
   public getStartDate(): Date {

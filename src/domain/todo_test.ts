@@ -18,6 +18,22 @@ Deno.test("Todo should be created with a title", function () {
   assertEquals(title, "Any title");
 });
 
+Deno.test("Todo should be possible edit title", function () {
+  beforeEach();
+  todo.setTitle("Edited title");
+  const title = todo.getTitle();
+
+  assertEquals(title, "Edited title");
+});
+
+Deno.test("Todo should set a description", function () {
+  beforeEach();
+  todo.setDescription("Any description");
+  const description = todo.getDescription();
+
+  assertEquals(description, "Any description");
+});
+
 Deno.test("Start date should accept date now", function () {
   beforeEach();
   const dateNow = new Date(Date.now());
