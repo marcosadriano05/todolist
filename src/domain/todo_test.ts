@@ -5,15 +5,28 @@ import {
 import { Todo } from "./todo.ts";
 import { TodoError } from "./todo_error.ts";
 
+let todo: Todo;
+
+function beforeEach() {
+  todo = new Todo("Any title");
+}
+
+Deno.test("Todo should be created with a title", function () {
+  beforeEach();
+  const title = todo.getTitle();
+
+  assertEquals(title, "Any title");
+});
+
 Deno.test("Start date should accept date now", function () {
-  const todo = new Todo();
+  beforeEach();
   const dateNow = new Date(Date.now());
 
   assertEquals(todo.getStartDate(), dateNow);
 });
 
 Deno.test("Start date shouldn't be before now", function () {
-  const todo = new Todo();
+  beforeEach();
   const dateBeforeNow = new Date(Date.now() - 1);
 
   assertThrows(
@@ -24,7 +37,7 @@ Deno.test("Start date shouldn't be before now", function () {
 });
 
 Deno.test("Finish date shouldn't be equals to start date", function () {
-  const todo = new Todo();
+  beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
   const startDate = todo.getStartDate();
@@ -38,7 +51,7 @@ Deno.test("Finish date shouldn't be equals to start date", function () {
 });
 
 Deno.test("Finish date shouldn't be before or equals to start date", function () {
-  const todo = new Todo();
+  beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
   const startDate = todo.getStartDate();
