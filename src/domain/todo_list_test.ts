@@ -3,28 +3,7 @@ import {
   assertEquals,
 } from "https://deno.land/std@0.133.0/testing/asserts.ts";
 import { Todo } from "./todo.ts";
-
-class TodoList {
-  private todos: Todo[];
-  private category: string;
-
-  constructor(category: string) {
-    this.todos = [];
-    this.category = category;
-  }
-
-  public getCatedory(): string {
-    return this.category;
-  }
-
-  public addTodo(todo: Todo) {
-    this.todos.push(todo);
-  }
-
-  public getTodos(): Todo[] {
-    return this.todos;
-  }
-}
+import { TodoList } from "./todo_list.ts";
 
 let todoList: TodoList;
 function beforeEach() {
