@@ -1,4 +1,4 @@
-import { Todo } from "./todo.ts";
+import { Todo } from "../todo/todo.ts";
 import { TodoListError } from "./todo_list_error.ts";
 
 export class TodoList {

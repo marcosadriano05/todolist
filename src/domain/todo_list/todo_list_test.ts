@@ -3,7 +3,7 @@ import {
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.133.0/testing/asserts.ts";
-import { Todo } from "./todo.ts";
+import { Todo } from "../todo/todo.ts";
 import { TodoList } from "./todo_list.ts";
 import { TodoListError } from "./todo_list_error.ts";
 
