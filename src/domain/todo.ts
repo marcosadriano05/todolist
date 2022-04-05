@@ -1,16 +1,22 @@
 import { TodoError } from "./todo_error.ts";
 
 export class Todo {
+  private id: string;
   private title: string;
   private description: string;
   private startDate: Date;
   private finishDate: Date;
 
   constructor(title: string) {
+    this.id = crypto.randomUUID();
     this.title = title;
     this.description = "";
     this.startDate = new Date();
     this.finishDate = new Date();
+  }
+
+  public getId(): string {
+    return this.id;
   }
 
   public getTitle(): string {

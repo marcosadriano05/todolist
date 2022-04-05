@@ -1,7 +1,9 @@
 import {
+  assert,
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.133.0/testing/asserts.ts";
+import { v4 } from "https://deno.land/std@0.133.0/uuid/mod.ts";
 import { Todo } from "./todo.ts";
 import { TodoError } from "./todo_error.ts";
 
@@ -10,6 +12,13 @@ let todo: Todo;
 function beforeEach() {
   todo = new Todo("Any title");
 }
+
+Deno.test("Todo should be created with a random uuid id", function () {
+  beforeEach();
+  const id = todo.getId();
+
+  assert(v4.validate(id));
+});
 
 Deno.test("Todo should be created with a title", function () {
   beforeEach();
