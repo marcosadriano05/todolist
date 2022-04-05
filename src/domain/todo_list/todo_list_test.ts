@@ -3,6 +3,7 @@ import {
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.133.0/testing/asserts.ts";
+import { v4 } from "https://deno.land/std@0.133.0/uuid/mod.ts";
 import { Todo } from "../todo/todo.ts";
 import { TodoList } from "./todo_list.ts";
 import { TodoListError } from "./todo_list_error.ts";
@@ -24,6 +25,14 @@ Deno.test("Should create a TodoList with a category", function () {
   const category = todoList.getCatedory();
 
   assertEquals(category, "Any category");
+});
+
+Deno.test("TodoList should be created with a random uuid id", function () {
+  beforeEach();
+
+  const todoListId = todoList.getId();
+
+  assert(v4.validate(todoListId));
 });
 
 Deno.test("Should add a Todo in TodoList", function () {

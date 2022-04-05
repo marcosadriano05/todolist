@@ -2,12 +2,18 @@ import { Todo } from "../todo/todo.ts";
 import { TodoListError } from "./todo_list_error.ts";
 
 export class TodoList {
+  private id: string;
   private todos: Todo[];
   private category: string;
 
   constructor(category: string) {
+    this.id = crypto.randomUUID();
     this.todos = [];
     this.category = category;
+  }
+
+  public getId(): string {
+    return this.id;
   }
 
   public getCatedory(): string {
