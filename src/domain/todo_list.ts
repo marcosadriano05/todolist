@@ -20,4 +20,8 @@ export class TodoList {
   public getTodos(): Todo[] {
     return this.todos;
   }
+
+  public removeTodo(id: string) {
+    this.todos = this.todos.filter((todo) => todo.getId() !== id);
+  }
 }
