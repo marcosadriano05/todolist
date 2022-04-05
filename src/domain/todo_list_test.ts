@@ -1,9 +1,11 @@
 import {
   assert,
   assertEquals,
+  assertThrows,
 } from "https://deno.land/std@0.133.0/testing/asserts.ts";
 import { Todo } from "./todo.ts";
 import { TodoList } from "./todo_list.ts";
+import { TodoListError } from "./todo_list_error.ts";
 
 let todoList: TodoList;
 let todo1: Todo;
@@ -44,5 +46,15 @@ Deno.test("Should remove a Todo with specific id", function () {
   assertEquals(
     todoList.getTodos().find((todo) => todo.getTitle() === "Todo 1"),
     undefined,
+  );
+});
+
+Deno.test("Should throw an error if Todo id is not present", function () {
+  beforeEach();
+
+  assertThrows(
+    () => todoList.removeTodo("Any id"),
+    TodoListError,
+    "Todo not found in the list",
   );
 });
