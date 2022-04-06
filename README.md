@@ -1,7 +1,7 @@
 # Todolist app
 
 This app is a simple Todolist where the user manage your tasks. It was made with
-Deno runtime applying TDD concepts to learning purposes.
+Deno runtime applying TDD concepts and Github Actions workflows to learning purposes.
 
 ### How to run
 
