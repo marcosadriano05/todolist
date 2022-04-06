@@ -38,5 +38,5 @@ jobs:
 
       - name: Run tests
         env: 
-          INTEGRATION_TEST_ENEABLED: true
+          INTEGRATION_TEST_ENEABLED: false
         run: deno test --allow-net --allow-env
