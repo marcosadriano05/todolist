@@ -32,11 +32,8 @@ jobs:
 
       - name: Verify formatting
         run: deno fmt --check
-      
-      # - name: Create env variable to integration tests
-      #   run: export INTEGRATION_TEST_ENEABLED=true
 
       - name: Run tests
         env: 
-          INTEGRATION_TEST_ENEABLED: false
+          INTEGRATION_TEST_ENEABLED: true
         run: deno test --allow-net --allow-env
