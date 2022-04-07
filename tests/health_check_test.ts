@@ -7,7 +7,7 @@ async function health_check_returns_status_200() {
   const request = await superoak(app);
   await request.get("/health-check").expect((res) => {
     if (res.status !== 200) {
-      fail("Status code deve ser 200");
+      fail("Status code should be 200");
     }
   });
 }

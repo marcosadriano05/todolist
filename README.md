@@ -10,7 +10,7 @@ Its needed Deno runtime installed.
 
 To run the unit tests, run the command:
 
-```ts
+```shell
 deno run --allow-net --allow-env
 ```
 
@@ -22,6 +22,6 @@ export INTEGRATION_TEST_ENEABLED=true
 
 And run the command:
 
-```ts
+```shell
 deno run --allow-net --allow-env
 ```
