@@ -1,9 +1,5 @@
-import {
-  assert,
-  assertEquals,
-  assertThrows,
-} from "https://deno.land/std@0.133.0/testing/asserts.ts";
-import { v4 } from "https://deno.land/std@0.133.0/uuid/mod.ts";
+import { assert, assertEquals, assertThrows } from "../../../external/tests.ts";
+import { v4 } from "../../../external/uuid.ts";
 import { Todo } from "../todo/todo.ts";
 import { TodoList } from "./todo_list.ts";
 import { TodoListError } from "./todo_list_error.ts";

@@ -1,5 +1,4 @@
-import { fail } from "https://deno.land/std@0.133.0/testing/asserts.ts";
-import { superoak } from "https://deno.land/x/superoak@4.7.0/mod.ts";
+import { fail, superoak } from "../external/tests.ts";
 
 import { app } from "../src/main/app.ts";
 
