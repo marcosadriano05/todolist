@@ -26,25 +26,16 @@ And run the command:
 deno run --allow-net --allow-env
 ```
 
-### Develop
-
-On scripts folder, the command script has some instructions as alias to long
-line of deno commands.
-
-To give execute permission:
-
-```shell
-chmod +x ./scripts/commands.sh
-```
+To make easy run the commands, the Makefile contains some scripts:
 
 To run only unit tests:
 
 ```shell
-./scripts/commands.sh test
+make test
 ```
 
 To run integration tests too:
 
 ```shell
-./scripts/commands.sh test integration
+make test-integration
 ```
