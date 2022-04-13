@@ -1,4 +1,5 @@
 import { TodoError } from "./todo_error.ts";
+import { TodoStatus } from "./todo_status.ts";
 
 export class Todo {
   private id: string;
@@ -6,7 +7,7 @@ export class Todo {
   private description: string;
   private startDate: Date;
   private finishDate: Date;
-  private status: string;
+  private status: TodoStatus;
 
   constructor(title: string) {
     this.id = crypto.randomUUID();
@@ -14,7 +15,7 @@ export class Todo {
     this.description = "";
     this.startDate = new Date();
     this.finishDate = new Date();
-    this.status = "";
+    this.status = new TodoStatus();
   }
 
   public getId(): string {
@@ -56,13 +57,6 @@ export class Todo {
   }
 
   getStatus(): string {
-    const dateNow = new Date(Date.now());
-    if (this.startDate > dateNow) {
-      return "READY";
-    }
-    if (this.startDate <= dateNow && this.finishDate > dateNow) {
-      return "DOING";
-    }
-    return this.status;
+    return this.status.checkStatusByDate(this.startDate, this.finishDate);
   }
 }
