@@ -1,8 +1,8 @@
 export class TodoStatus {
-  value: "" | "READY" | "DOING" | "DONE";
+  value: "INCOMPLETE" | "READY" | "DOING" | "DONE";
 
   constructor() {
-    this.value = "";
+    this.value = "INCOMPLETE";
   }
 
   checkStatusByDate(start: Date, finish: Date): string {

@@ -8,6 +8,13 @@ function beforeEach() {
   todoStatus = new TodoStatus();
 }
 
+Deno.test("TodoStatus: status should be INCOMPLETE when created", function () {
+  beforeEach();
+  const status = todoStatus.value;
+
+  assertEquals(status, "INCOMPLETE");
+});
+
 Deno.test("TodoStatus: status should be READY before reaching startDate", function () {
   beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
