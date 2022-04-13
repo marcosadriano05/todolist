@@ -100,3 +100,13 @@ Deno.test("Finish date shouldn't be before or equals to start date", function ()
     "Finish date should be greater than start date",
   );
 });
+
+Deno.test("Todo: should throw an error if get status before set start and finish date", function () {
+  beforeEach();
+
+  assertThrows(
+    () => todo.getStatus(),
+    TodoError,
+    "Is needed start and finish date to get Todo status.",
+  );
+});
