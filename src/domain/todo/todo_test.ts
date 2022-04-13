@@ -59,24 +59,15 @@ Deno.test("Todo: start date shouldn't be before now", function () {
   );
 });
 
-Deno.test("Todo: finish date shouldn't be equals to start date", function () {
+Deno.test("Todo: finish date can be equals to start date", function () {
   beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
-  const startDate = todo.getStartDate();
-  let dateStart: Date;
-  if (startDate) {
-    dateStart = new Date(startDate.getTime());
-  }
-
-  assertThrows(
-    () => todo.setFinishDate(dateStart),
-    TodoError,
-    "Finish date should be greater than start date.",
-  );
+  todo.setFinishDate(dateNowPlus1000ms);
+  assertEquals(todo.getFinishDate(), dateNowPlus1000ms);
 });
 
-Deno.test("Todo: finish date shouldn't be before or equals to start date", function () {
+Deno.test("Todo: finish date shouldn't be less than start date", function () {
   beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
@@ -89,7 +80,7 @@ Deno.test("Todo: finish date shouldn't be before or equals to start date", funct
   assertThrows(
     () => todo.setFinishDate(dateBeforeStart),
     TodoError,
-    "Finish date should be greater than start date.",
+    "Finish date should be greater or equals than start date.",
   );
 });
 

@@ -54,8 +54,10 @@ export class Todo {
   }
 
   setFinishDate(date: Date) {
-    if (this.startDate && date <= this.startDate) {
-      throw new TodoError("Finish date should be greater than start date.");
+    if (this.startDate && date < this.startDate) {
+      throw new TodoError(
+        "Finish date should be greater or equals than start date.",
+      );
     }
     this.finishDate = date;
   }
