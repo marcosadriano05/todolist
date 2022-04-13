@@ -16,14 +16,14 @@ function beforeEach() {
   todoList.addTodo(todo2);
 }
 
-Deno.test("Should create a TodoList with a category", function () {
+Deno.test("TodoList: should create a TodoList with a category", function () {
   beforeEach();
   const category = todoList.getCatedory();
 
   assertEquals(category, "Any category");
 });
 
-Deno.test("TodoList should be created with a random uuid id", function () {
+Deno.test("TodoList: should be created with a random uuid id", function () {
   beforeEach();
 
   const todoListId = todoList.getId();
@@ -31,7 +31,7 @@ Deno.test("TodoList should be created with a random uuid id", function () {
   assert(v4.validate(todoListId));
 });
 
-Deno.test("Should add a Todo in TodoList", function () {
+Deno.test("TodoList: should add a Todo in TodoList", function () {
   beforeEach();
 
   assert(todoList.getTodos().some((todo) => todo.getTitle() === "Todo 1"));
@@ -42,7 +42,7 @@ Deno.test("Should add a Todo in TodoList", function () {
   );
 });
 
-Deno.test("Should remove a Todo with specific id", function () {
+Deno.test("TodoList: should remove a Todo with specific id", function () {
   beforeEach();
 
   const todoId = todo1.getId();
@@ -54,12 +54,12 @@ Deno.test("Should remove a Todo with specific id", function () {
   );
 });
 
-Deno.test("Should throw an error if Todo id is not present", function () {
+Deno.test("TodoList: should throw an error if Todo id is not present", function () {
   beforeEach();
 
   assertThrows(
     () => todoList.removeTodo("Any id"),
     TodoListError,
-    "Todo not found in the list",
+    "Todo not found in the list.",
   );
 });

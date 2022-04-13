@@ -48,14 +48,14 @@ export class Todo {
 
   public setStartDate(date: Date) {
     if (date < new Date()) {
-      throw new TodoError("Start date should be greater or equals to now");
+      throw new TodoError("Start date should be greater or equals to now.");
     }
     this.startDate = date;
   }
 
   public setFinishDate(date: Date) {
     if (this.startDate && date <= this.startDate) {
-      throw new TodoError("Finish date should be greater than start date");
+      throw new TodoError("Finish date should be greater than start date.");
     }
     this.finishDate = date;
   }
