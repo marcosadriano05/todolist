@@ -5,16 +5,16 @@ export class Todo {
   private id: string;
   private title: string;
   private description: string;
-  private startDate: Date;
-  private finishDate: Date;
+  private startDate: Date | undefined;
+  private finishDate: Date | undefined;
   private status: TodoStatus;
 
   constructor(title: string) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.description = "";
-    this.startDate = new Date();
-    this.finishDate = new Date();
+    this.startDate = undefined;
+    this.finishDate = undefined;
     this.status = new TodoStatus();
   }
 
@@ -38,8 +38,12 @@ export class Todo {
     this.description = description;
   }
 
-  public getStartDate(): Date {
+  public getStartDate(): Date | undefined {
     return this.startDate;
+  }
+
+  public getFinishDate(): Date | undefined {
+    return this.finishDate;
   }
 
   public setStartDate(date: Date) {
@@ -50,13 +54,16 @@ export class Todo {
   }
 
   public setFinishDate(date: Date) {
-    if (date <= this.startDate) {
+    if (this.startDate && date <= this.startDate) {
       throw new TodoError("Finish date should be greater than start date");
     }
     this.finishDate = date;
   }
 
   getStatus(): string {
+    if (this.startDate === undefined || this.finishDate === undefined) {
+      return "";
+    }
     return this.status.checkStatusByDate(this.startDate, this.finishDate);
   }
 }

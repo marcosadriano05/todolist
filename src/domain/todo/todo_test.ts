@@ -23,6 +23,15 @@ Deno.test("Todo should be created with a title", function () {
   assertEquals(title, "Any title");
 });
 
+Deno.test("Todo should be created with an undefined start and finish date", function () {
+  beforeEach();
+  const startDate = todo.getStartDate();
+  const finishDate = todo.getFinishDate();
+
+  assertEquals(startDate, undefined);
+  assertEquals(finishDate, undefined);
+});
+
 Deno.test("Todo should be possible edit title", function () {
   beforeEach();
   todo.setTitle("Edited title");
@@ -42,6 +51,7 @@ Deno.test("Todo should set a description", function () {
 Deno.test("Start date should accept date now", function () {
   beforeEach();
   const dateNow = new Date(Date.now());
+  todo.setStartDate(dateNow);
 
   assertEquals(todo.getStartDate(), dateNow);
 });
@@ -62,7 +72,10 @@ Deno.test("Finish date shouldn't be equals to start date", function () {
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
   const startDate = todo.getStartDate();
-  const dateStart = new Date(startDate.getTime());
+  let dateStart: Date;
+  if (startDate) {
+    dateStart = new Date(startDate.getTime());
+  }
 
   assertThrows(
     () => todo.setFinishDate(dateStart),
@@ -76,7 +89,10 @@ Deno.test("Finish date shouldn't be before or equals to start date", function ()
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   todo.setStartDate(dateNowPlus1000ms);
   const startDate = todo.getStartDate();
-  const dateBeforeStart = new Date(startDate.getTime() - 1);
+  let dateBeforeStart: Date;
+  if (startDate) {
+    dateBeforeStart = new Date(startDate.getTime() - 1);
+  }
 
   assertThrows(
     () => todo.setFinishDate(dateBeforeStart),
