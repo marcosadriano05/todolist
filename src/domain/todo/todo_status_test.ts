@@ -15,6 +15,13 @@ Deno.test("TodoStatus: status should be INCOMPLETE when created", function () {
   assertEquals(status, "INCOMPLETE");
 });
 
+Deno.test("TodoStatus: status should be INCOMPLETE if start or finish date are undefined", function () {
+  beforeEach();
+  const status = todoStatus.checkStatusByDate(undefined, new Date());
+
+  assertEquals(status, "INCOMPLETE");
+});
+
 Deno.test("TodoStatus: status should be READY before reaching startDate", function () {
   beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
