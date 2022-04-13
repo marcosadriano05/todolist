@@ -56,8 +56,12 @@ export class Todo {
   }
 
   getStatus(): string {
-    if (this.startDate > new Date(Date.now())) {
+    const dateNow = new Date(Date.now());
+    if (this.startDate > dateNow) {
       return "READY";
+    }
+    if (this.startDate <= dateNow && this.finishDate > dateNow) {
+      return "DOING";
     }
     return this.status;
   }
