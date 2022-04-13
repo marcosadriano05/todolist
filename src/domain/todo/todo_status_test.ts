@@ -20,11 +20,23 @@ Deno.test("TodoStatus: status should be READY before reaching startDate", functi
   assertEquals(status, "READY");
 });
 
-Deno.test("Todo: status should be DOING if date is between startDate and finishDate", function () {
+Deno.test("TodoStatus: status should be DOING if date is between startDate and finishDate", function () {
   beforeEach();
   const dateNow = new Date(Date.now());
   const dateNowPlus1000ms = new Date(Date.now() + 1000);
   const status = todoStatus.checkStatusByDate(dateNow, dateNowPlus1000ms);
 
   assertEquals(status, "DOING");
+});
+
+Deno.test("TodoStatus: status should be DONE if date is after finishDate", function () {
+  beforeEach();
+  const dateNowMinus1000ms = new Date(Date.now() - 1000);
+  const dateNowMinus500ms = new Date(Date.now() - 500);
+  const status = todoStatus.checkStatusByDate(
+    dateNowMinus1000ms,
+    dateNowMinus500ms,
+  );
+
+  assertEquals(status, "DONE");
 });
