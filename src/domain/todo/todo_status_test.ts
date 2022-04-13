@@ -54,3 +54,15 @@ Deno.test("TodoStatus: status should be DONE if date is after finishDate", funct
 
   assertEquals(status, "DONE");
 });
+
+Deno.test("TodoStatus: status should be DONE if date is finishDate", function () {
+  beforeEach();
+  const dateNowMinus1000ms = new Date(Date.now() - 1000);
+  const dateNow = new Date(Date.now());
+  const status = todoStatus.checkStatusByDate(
+    dateNowMinus1000ms,
+    dateNow,
+  );
+
+  assertEquals(status, "DONE");
+});
