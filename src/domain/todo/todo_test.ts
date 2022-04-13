@@ -84,3 +84,12 @@ Deno.test("Finish date shouldn't be before or equals to start date", function ()
     "Finish date should be greater than start date",
   );
 });
+
+Deno.test("Todo: status should be READY before reaching startDate", function () {
+  beforeEach();
+  const dateNowPlus1000ms = new Date(Date.now() + 1000);
+  todo.setStartDate(dateNowPlus1000ms);
+  const status = todo.getStatus();
+
+  assertEquals(status, "READY");
+});
