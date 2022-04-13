@@ -25,7 +25,13 @@ export class TodoList {
   }
 
   getTodos(): Todo[] {
-    return this.todos;
+    const sequence = ["DOING", "INCOMPLETE", "READY", "DONE"];
+    return sequence.reduce((todos: Todo[], status) => {
+      const filteredTodos = this.todos.filter((todo) =>
+        todo.getStatus() === status
+      );
+      return todos.concat(filteredTodos);
+    }, []);
   }
 
   removeTodo(id: string) {
