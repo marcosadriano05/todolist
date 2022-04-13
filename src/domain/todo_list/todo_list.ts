@@ -12,23 +12,23 @@ export class TodoList {
     this.category = category;
   }
 
-  public getId(): string {
+  getId(): string {
     return this.id;
   }
 
-  public getCatedory(): string {
+  getCatedory(): string {
     return this.category;
   }
 
-  public addTodo(todo: Todo) {
+  addTodo(todo: Todo) {
     this.todos.push(todo);
   }
 
-  public getTodos(): Todo[] {
+  getTodos(): Todo[] {
     return this.todos;
   }
 
-  public removeTodo(id: string) {
+  removeTodo(id: string) {
     if (!this.todos.some((todo) => todo.getId() === id)) {
       throw new TodoListError("Todo not found in the list.");
     }

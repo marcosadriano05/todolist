@@ -18,42 +18,42 @@ export class Todo {
     this.status = new TodoStatus();
   }
 
-  public getId(): string {
+  getId(): string {
     return this.id;
   }
 
-  public getTitle(): string {
+  getTitle(): string {
     return this.title;
   }
 
-  public setTitle(title: string) {
+  setTitle(title: string) {
     this.title = title;
   }
 
-  public getDescription(): string {
+  getDescription(): string {
     return this.description;
   }
 
-  public setDescription(description: string) {
+  setDescription(description: string) {
     this.description = description;
   }
 
-  public getStartDate(): Date | undefined {
+  getStartDate(): Date | undefined {
     return this.startDate;
   }
 
-  public getFinishDate(): Date | undefined {
+  getFinishDate(): Date | undefined {
     return this.finishDate;
   }
 
-  public setStartDate(date: Date) {
+  setStartDate(date: Date) {
     if (date < new Date()) {
       throw new TodoError("Start date should be greater or equals to now.");
     }
     this.startDate = date;
   }
 
-  public setFinishDate(date: Date) {
+  setFinishDate(date: Date) {
     if (this.startDate && date <= this.startDate) {
       throw new TodoError("Finish date should be greater than start date.");
     }
