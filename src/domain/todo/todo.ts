@@ -61,11 +61,6 @@ export class Todo {
   }
 
   getStatus(): string {
-    if (this.startDate === undefined || this.finishDate === undefined) {
-      throw new TodoError(
-        "Is needed start and finish date to get Todo status.",
-      );
-    }
     return this.status.checkStatusByDate(this.startDate, this.finishDate);
   }
 }

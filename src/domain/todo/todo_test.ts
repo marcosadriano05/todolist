@@ -100,3 +100,10 @@ Deno.test("Todo: finish date shouldn't be before or equals to start date", funct
     "Finish date should be greater than start date.",
   );
 });
+
+Deno.test("Todo: should get the status INCOMPLETE when is created", function () {
+  beforeEach();
+  const status = todo.getStatus();
+
+  assertEquals(status, "INCOMPLETE");
+});
