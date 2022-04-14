@@ -47,7 +47,8 @@ export class Todo {
   }
 
   setStartDate(date: Date) {
-    if (date < new Date()) {
+    const errorMarginDate5ms = new Date(Date.now() - 5)
+    if (date < errorMarginDate5ms) {
       throw new TodoError("Start date should be greater or equals to now.");
     }
     this.startDate = date;

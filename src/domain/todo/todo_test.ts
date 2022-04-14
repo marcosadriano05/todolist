@@ -48,9 +48,9 @@ Deno.test("Todo: should set a description", function () {
   assertEquals(description, "Any description");
 });
 
-Deno.test("Todo: start date shouldn't be before now", function () {
+Deno.test("Todo: start date shouldn't be before now (error margin 5ms)", function () {
   beforeEach();
-  const dateBeforeNow = new Date(Date.now() - 1);
+  const dateBeforeNow = new Date(Date.now() - 6);
 
   assertThrows(
     () => todo.setStartDate(dateBeforeNow),
