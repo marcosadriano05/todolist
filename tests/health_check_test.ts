@@ -3,10 +3,10 @@ import { fail, superoak } from "../external/tests.ts";
 import { app } from "../src/main/app.ts";
 
 async function health_check_returns_status_200() {
-  const request = await superoak(app);
-  await request.get("/health-check").expect((res) => {
-    if (res.status !== 200) {
-      fail("Status code should be 200");
+  const server = await superoak(app);
+  await server.get("/health-check").expect((response) => {
+    if (response.status !== 200) {
+      fail("Status code should be 200.");
     }
   });
 }
