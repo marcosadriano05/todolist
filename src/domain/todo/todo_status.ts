@@ -5,7 +5,7 @@ export class TodoStatus {
     this.value = "INCOMPLETE";
   }
 
-  checkStatusByDate(start: Date | undefined, finish: Date | undefined): string {
+  checkStatusByDate(start?: Date, finish?: Date): string {
     if (start === undefined || finish === undefined) {
       return "INCOMPLETE";
     }

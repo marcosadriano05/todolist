@@ -5,8 +5,8 @@ export class Todo {
   private id: string;
   private title: string;
   private description: string;
-  private startDate: Date | undefined;
-  private finishDate: Date | undefined;
+  private startDate?: Date;
+  private finishDate?: Date;
   private status: TodoStatus;
 
   constructor(title: string) {
@@ -47,7 +47,7 @@ export class Todo {
   }
 
   setStartDate(date: Date) {
-    const errorMarginDate5ms = new Date(Date.now() - 5)
+    const errorMarginDate5ms = new Date(Date.now() - 5);
     if (date < errorMarginDate5ms) {
       throw new TodoError("Start date should be greater or equals to now.");
     }
