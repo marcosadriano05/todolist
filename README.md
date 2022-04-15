@@ -24,7 +24,7 @@ make seed-run
 To run the unit tests, run the command:
 
 ```shell
-deno run --allow-net --allow-env
+deno run --unstable --allow-net --allow-env
 ```
 
 To run the integration tests too, its needed to create an env variable:
@@ -36,7 +36,7 @@ export INTEGRATION_TEST_ENEABLED=true
 And run the command:
 
 ```shell
-deno run --allow-net --allow-env
+deno run --unstable --allow-net --allow-env
 ```
 
 To make easy run the commands, the Makefile contains some scripts:
