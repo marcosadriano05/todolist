@@ -36,4 +36,4 @@ jobs:
       - name: Run tests
         env: 
           INTEGRATION_TEST_ENEABLED: true
-        run: deno test --allow-net --allow-env
+        run: deno test --unstable --allow-net --allow-env

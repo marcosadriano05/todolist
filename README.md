@@ -8,6 +8,19 @@ purposes.
 
 Its needed Deno runtime installed.
 
+First of all, you need to run all migrations to generate the Sqlite database
+with all tables. Run this command:
+
+```shell
+make migration-run
+```
+
+Run the command above to populate the database with default data:
+
+```shell
+make seed-run
+```
+
 To run the unit tests, run the command:
 
 ```shell
