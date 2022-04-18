@@ -4,6 +4,9 @@ test:
 test-integration:
 	export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net
 
+run:
+	deno run --unstable --allow-net ./src/main/server.ts
+
 migration-create:
 	deno run -A --unstable https://deno.land/x/nessie/cli.ts make:migration
 
