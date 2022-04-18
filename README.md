@@ -21,10 +21,22 @@ Run the command above to populate the database with default data:
 make seed-run
 ```
 
+To run the application:
+
+```shell
+make run
+```
+
+or
+
+```shell
+deno run --unstable --allow-net ./src/main/server.ts
+```
+
 To run the unit tests, run the command:
 
 ```shell
-deno run --unstable --allow-net --allow-env
+deno test --unstable --allow-net --allow-env
 ```
 
 To run the integration tests too, its needed to create an env variable:
@@ -36,7 +48,7 @@ export INTEGRATION_TEST_ENEABLED=true
 And run the command:
 
 ```shell
-deno run --unstable --allow-net --allow-env
+deno test --unstable --allow-net --allow-env
 ```
 
 To make easy run the commands, the Makefile contains some scripts:
