@@ -1,4 +1,4 @@
-import { assertEquals } from "../../external/tests.ts";
+import { assertEquals, assertExists } from "../../external/tests.ts";
 
 import { CreateTodoController } from "./todo_controllers.ts";
 
@@ -17,4 +17,6 @@ Deno.test("CreateTodoController: should return status 400 if no title is provide
   });
 
   assertEquals(response.statusCode, 400);
+  assertExists(response.body["message"]);
+  assertEquals(response.body.message, "Title property is necessary.");
 });

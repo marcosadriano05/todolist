@@ -4,7 +4,12 @@ import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 export class CreateTodoController implements Controller {
   handle(request: HttpRequest): Promise<HttpResponse> {
     if (!request.body.title) {
-      return new Promise((resolve) => resolve({ statusCode: 400 }));
+      return new Promise((resolve) =>
+        resolve({
+          statusCode: 400,
+          body: { message: "Title property is necessary." },
+        })
+      );
     }
     const todo = new Todo(request.body.title);
     todo.setDescription(request.body.description);
