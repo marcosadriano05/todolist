@@ -15,5 +15,5 @@ interface Header {
 }
 
 export interface Controller {
-  handle(request: HttpRequest): HttpResponse;
+  handle(request: HttpRequest): Promise<HttpResponse>;
 }

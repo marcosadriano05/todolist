@@ -9,7 +9,7 @@ function oakAdapter(controller: Controller) {
     const httpRequest: HttpRequest = {
       body: data,
     };
-    const httpResponse = controller.handle(httpRequest);
+    const httpResponse = await controller.handle(httpRequest);
     context.response.status = httpResponse.statusCode;
     httpResponse.headers?.forEach((header) => {
       context.response.headers.set(
