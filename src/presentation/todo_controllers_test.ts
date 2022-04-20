@@ -1,10 +1,22 @@
 import { assert, assertEquals, assertExists } from "../../external/tests.ts";
+import { Todo } from "../domain/todo/todo.ts";
+import { HttpRequest } from "./controller.ts";
 
 import { CreateTodoController } from "./todo_controllers.ts";
+import { TodoService } from "./todo_service.ts";
+
+class CreateTodoService implements TodoService {
+  perform(request: HttpRequest): Todo {
+    const todo = new Todo(request.body.title);
+    todo.setDescription(request.body.description);
+    todo.setStartDate(request.body.startDate);
+    return todo;
+  }
+}
 
 let createTodoController: CreateTodoController;
 function beforeEach() {
-  createTodoController = new CreateTodoController();
+  createTodoController = new CreateTodoController(new CreateTodoService());
 }
 
 Deno.test("CreateTodoController: should return status 400 if no title is provided", async function () {

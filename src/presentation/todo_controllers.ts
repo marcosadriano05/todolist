@@ -1,7 +1,11 @@
-import { Todo } from "../domain/todo/todo.ts";
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
+import { TodoService } from "./todo_service.ts";
 
 export class CreateTodoController implements Controller {
+  constructor(
+    private readonly createTodoService: TodoService,
+  ) {}
+
   handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       if (!request.body.title) {
@@ -12,9 +16,7 @@ export class CreateTodoController implements Controller {
           })
         );
       }
-      const todo = new Todo(request.body.title);
-      todo.setDescription(request.body.description);
-      todo.setStartDate(request.body.startDate);
+      const todo = this.createTodoService.perform(request);
       return new Promise((resolve) =>
         resolve({
           statusCode: 201,
