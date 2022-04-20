@@ -33,3 +33,26 @@ Deno.test({
     : true,
   fn: create_todo,
 });
+
+async function create_todo_without_title() {
+  const server = await superoak(app);
+  await server.post("/todo")
+    .set("Content-Type", "application/json")
+    .send({
+      description: "Any description",
+    })
+    .expect((response) => {
+      if (response.status !== 400) {
+        fail("Status should be 400.");
+      }
+    });
+}
+
+Deno.test({
+  name:
+    "Integration: Route POST /todo should returns status 400 if no title is provided",
+  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
+    ? false
+    : true,
+  fn: create_todo_without_title,
+});
