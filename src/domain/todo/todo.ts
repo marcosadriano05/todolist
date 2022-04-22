@@ -46,7 +46,10 @@ export class Todo {
     return this.finishDate;
   }
 
-  setStartDate(date: Date) {
+  setStartDate(date: Date | string) {
+    if (typeof date === "string") {
+      date = new Date(date);
+    }
     const errorMarginDate5ms = new Date(Date.now() - 5);
     if (date < errorMarginDate5ms) {
       throw new TodoError("Start date should be greater or equals to now.");
@@ -54,7 +57,10 @@ export class Todo {
     this.startDate = date;
   }
 
-  setFinishDate(date: Date) {
+  setFinishDate(date: Date | string) {
+    if (typeof date === "string") {
+      date = new Date(date);
+    }
     if (this.startDate && date < this.startDate) {
       throw new TodoError(
         "Finish date should be greater or equals than start date.",

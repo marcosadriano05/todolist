@@ -5,7 +5,7 @@ import { HttpRequest } from "./controller.ts";
 import { CreateTodoController } from "./todo_controllers.ts";
 import { TodoService } from "./todo_service.ts";
 
-class CreateTodoService implements TodoService {
+class FakeCreateTodoService implements TodoService {
   perform(request: HttpRequest): Promise<Todo> {
     const todo = new Todo(request.body.title);
     todo.setDescription(request.body.description);
@@ -16,7 +16,7 @@ class CreateTodoService implements TodoService {
 
 let createTodoController: CreateTodoController;
 function beforeEach() {
-  createTodoController = new CreateTodoController(new CreateTodoService());
+  createTodoController = new CreateTodoController(new FakeCreateTodoService());
 }
 
 Deno.test("CreateTodoController: should return status 400 if no title is provided", async function () {
