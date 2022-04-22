@@ -34,6 +34,8 @@ jobs:
         run: deno fmt --check
 
       - name: Run tests
+        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate
+        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts seed
         env: 
           INTEGRATION_TEST_ENEABLED: true
         run: deno test --unstable --allow-net --allow-env
