@@ -32,10 +32,14 @@ jobs:
 
       - name: Verify formatting
         run: deno fmt --check
+      
+      - name: Run migrations
+        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate
+
+      - name: Run seeds
+        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts seed
 
       - name: Run tests
-        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate
-        run: deno run -A --unstable https://deno.land/x/nessie/cli.ts seed
         env: 
           INTEGRATION_TEST_ENEABLED: true
         run: deno test --unstable --allow-net --allow-env
