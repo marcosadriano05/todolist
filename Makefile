@@ -1,5 +1,5 @@
 test:
-	export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net
+	export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net --allow-read --allow-write
 
 test-integration:
 	export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net --allow-read --allow-write

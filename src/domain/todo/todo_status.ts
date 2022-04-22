@@ -10,7 +10,7 @@ export class TodoStatus {
       return "INCOMPLETE";
     }
 
-    const dateNow = new Date(Date.now());
+    const dateNow = new Date();
 
     if (start > dateNow) {
       return "READY";
