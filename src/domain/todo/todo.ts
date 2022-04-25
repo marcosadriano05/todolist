@@ -1,6 +1,8 @@
 import { TodoError } from "./todo_error.ts";
 import { TodoStatus } from "./todo_status.ts";
 
+import { v4 } from "../../../external/uuid.ts";
+
 export class Todo {
   private id: string;
   private title: string;
@@ -9,8 +11,8 @@ export class Todo {
   private finishDate?: Date;
   private status: TodoStatus;
 
-  constructor(title: string) {
-    this.id = crypto.randomUUID();
+  constructor(title: string, id: string = "") {
+    this.id = id && v4.validate(id) ? id : crypto.randomUUID();
     this.title = title;
     this.description = "";
     this.startDate = undefined;

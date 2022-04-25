@@ -9,6 +9,15 @@ function beforeEach() {
   todo = new Todo("Any title");
 }
 
+Deno.test("Todo: should be able to pass a random id on creation", function () {
+  const id = crypto.randomUUID();
+  const todo = new Todo("Any title", id);
+  const todoId = todo.getId();
+
+  assert(v4.validate(todoId));
+  assertEquals(todoId, id);
+});
+
 Deno.test("Todo: should be created with a random uuid id", function () {
   beforeEach();
   const id = todo.getId();
