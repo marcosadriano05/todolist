@@ -68,6 +68,15 @@ Deno.test("Todo: start date shouldn't be before now (error margin 5ms)", functio
   );
 });
 
+Deno.test("Todo: should set undefined if start or finish date string has a value 'null' or 'undefined'", function () {
+  beforeEach();
+  todo.setStartDate("null");
+  todo.setFinishDate("undefined");
+
+  assertEquals(undefined, todo.getStartDate());
+  assertEquals(undefined, todo.getFinishDate());
+});
+
 Deno.test("Todo: finish date can be equals to start date", function () {
   beforeEach();
   const dateNowPlus1000ms = new Date(Date.now() + 1000);

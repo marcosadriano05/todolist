@@ -49,6 +49,7 @@ export class Todo {
   }
 
   setStartDate(date: Date | string) {
+    if (date === "null" || date === "undefined") return;
     if (typeof date === "string") {
       date = new Date(date);
     }
@@ -60,6 +61,7 @@ export class Todo {
   }
 
   setFinishDate(date: Date | string) {
+    if (date === "null" || date === "undefined") return;
     if (typeof date === "string") {
       date = new Date(date);
     }
