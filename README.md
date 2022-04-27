@@ -12,19 +12,19 @@ First of all, you need to run all migrations to generate the Sqlite database
 with all tables. Run this command:
 
 ```shell
-make migration-run
+deno task migration:run
 ```
 
 Run the command above to populate the database with default data:
 
 ```shell
-make seed-run
+deno task seed:run
 ```
 
 To run the application:
 
 ```shell
-make run
+deno task run
 ```
 
 or
@@ -56,11 +56,11 @@ To make easy run the commands, the Makefile contains some scripts:
 To run only unit tests:
 
 ```shell
-make test
+deno task test:unit
 ```
 
 To run integration tests too:
 
 ```shell
-make test-integration
+deno task test:integration
 ```
