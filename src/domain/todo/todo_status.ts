@@ -7,18 +7,21 @@ export class TodoStatus {
 
   checkStatusByDate(start?: Date, finish?: Date): string {
     if (start === undefined || finish === undefined) {
-      return "INCOMPLETE";
+      this.value = "INCOMPLETE";
+      return this.value;
     }
 
     const dateNow = new Date();
 
     if (start > dateNow) {
-      return "READY";
+      this.value = "READY";
+      return this.value;
     }
     if (start <= dateNow && finish > dateNow) {
-      return "DOING";
+      this.value = "DOING";
+      return this.value;
     }
-
-    return "DONE";
+    this.value = "DONE";
+    return this.value;
   }
 }

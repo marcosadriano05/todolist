@@ -58,6 +58,7 @@ export class Todo {
       throw new TodoError("Start date should be greater or equals to now.");
     }
     this.startDate = date;
+    this.status.checkStatusByDate(this.startDate, this.finishDate);
   }
 
   setFinishDate(date: Date | string) {
@@ -71,6 +72,7 @@ export class Todo {
       );
     }
     this.finishDate = date;
+    this.status.checkStatusByDate(this.startDate, this.finishDate);
   }
 
   getStatus(): string {

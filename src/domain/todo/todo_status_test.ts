@@ -66,3 +66,15 @@ Deno.test("TodoStatus: status should be DONE if date is finishDate", function ()
 
   assertEquals(status, "DONE");
 });
+
+Deno.test("TodoStatus: status should be updated when checkStatusByDate is called", function () {
+  beforeEach();
+  const dateNowPlus1000ms = new Date(Date.now() + 1000);
+  const dateNowPlus2000ms = new Date(Date.now() + 2000);
+  todoStatus.checkStatusByDate(
+    dateNowPlus1000ms,
+    dateNowPlus2000ms,
+  );
+
+  assertEquals(todoStatus.value, "READY");
+});
