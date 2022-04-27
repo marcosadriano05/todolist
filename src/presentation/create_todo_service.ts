@@ -13,7 +13,6 @@ export class CreateTodoService implements TodoService {
     todo.setStartDate(startDate);
     todo.setFinishDate(finishDate);
     const savedTodo = await this.todoRepository.save(todo);
-
     return new Promise((resolve) => resolve(savedTodo));
   }
 }

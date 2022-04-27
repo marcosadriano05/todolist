@@ -18,15 +18,13 @@ export class SqliteTodoRepository implements Repository<Todo> {
       title,
       description,
       start_date,
-      finish_date,
-      status
+      finish_date
     ) VALUES (
       '${data.getId()}',
       '${data.getTitle()}',
       '${data.getDescription()}',
       '${formatedStartDate}',
-      '${formatedFinishDate}',
-      '${data.getStatus()}'
+      '${formatedFinishDate}'
     );`);
 
     const todoFromDB = this.database.query(
