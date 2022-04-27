@@ -1,110 +1,109 @@
-import { assert, assertEquals, assertThrows } from "../../../external/tests.ts";
+import {
+  assert,
+  assertEquals,
+  assertThrows,
+  beforeEach,
+  describe,
+  it,
+} from "../../../external/tests.ts";
 import { v4 } from "../../../external/uuid.ts";
 import { Todo } from "./todo.ts";
 import { TodoError } from "./todo_error.ts";
 
 let todo: Todo;
 
-function beforeEach() {
+beforeEach(() => {
   todo = new Todo("Any title");
-}
-
-Deno.test("Todo: should be able to pass a random id on creation", function () {
-  const id = crypto.randomUUID();
-  const todo = new Todo("Any title", id);
-  const todoId = todo.getId();
-
-  assert(v4.validate(todoId));
-  assertEquals(todoId, id);
 });
 
-Deno.test("Todo: should be created with a random uuid id", function () {
-  beforeEach();
-  const id = todo.getId();
+describe("Todo", () => {
+  it("should be able to pass a random id on creation", function () {
+    const id = crypto.randomUUID();
+    const todo = new Todo("Any title", id);
+    const todoId = todo.getId();
 
-  assert(v4.validate(id));
-});
+    assert(v4.validate(todoId));
+    assertEquals(todoId, id);
+  });
 
-Deno.test("Todo: should be created with a title", function () {
-  beforeEach();
-  const title = todo.getTitle();
+  it("should be created with a random uuid id", () => {
+    const id = todo.getId();
 
-  assertEquals(title, "Any title");
-});
+    assert(v4.validate(id));
+  });
 
-Deno.test("Todo: should be created with an undefined start and finish date", function () {
-  beforeEach();
-  const startDate = todo.getStartDate();
-  const finishDate = todo.getFinishDate();
+  it("should be created with a title", () => {
+    const title = todo.getTitle();
 
-  assertEquals(startDate, undefined);
-  assertEquals(finishDate, undefined);
-});
+    assertEquals(title, "Any title");
+  });
 
-Deno.test("Todo: should be possible edit title", function () {
-  beforeEach();
-  todo.setTitle("Edited title");
-  const title = todo.getTitle();
+  it("should be created with an undefined start and finish date", () => {
+    const startDate = todo.getStartDate();
+    const finishDate = todo.getFinishDate();
 
-  assertEquals(title, "Edited title");
-});
+    assertEquals(startDate, undefined);
+    assertEquals(finishDate, undefined);
+  });
 
-Deno.test("Todo: should set a description", function () {
-  beforeEach();
-  todo.setDescription("Any description");
-  const description = todo.getDescription();
+  it("should be possible edit title", () => {
+    todo.setTitle("Edited title");
+    const title = todo.getTitle();
 
-  assertEquals(description, "Any description");
-});
+    assertEquals(title, "Edited title");
+  });
 
-Deno.test("Todo: start date shouldn't be before now (error margin 5ms)", function () {
-  beforeEach();
-  const dateBeforeNow = new Date(Date.now() - 6);
+  it("should set a description", () => {
+    todo.setDescription("Any description");
+    const description = todo.getDescription();
 
-  assertThrows(
-    () => todo.setStartDate(dateBeforeNow),
-    TodoError,
-    "Start date should be greater or equals to now.",
-  );
-});
+    assertEquals(description, "Any description");
+  });
 
-Deno.test("Todo: should set undefined if start or finish date string has a value 'null' or 'undefined'", function () {
-  beforeEach();
-  todo.setStartDate("null");
-  todo.setFinishDate("undefined");
+  it("start date shouldn't be before now (error margin 5ms)", () => {
+    const dateBeforeNow = new Date(Date.now() - 6);
 
-  assertEquals(undefined, todo.getStartDate());
-  assertEquals(undefined, todo.getFinishDate());
-});
+    assertThrows(
+      () => todo.setStartDate(dateBeforeNow),
+      TodoError,
+      "Start date should be greater or equals to now.",
+    );
+  });
 
-Deno.test("Todo: finish date can be equals to start date", function () {
-  beforeEach();
-  const dateNowPlus1000ms = new Date(Date.now() + 1000);
-  todo.setStartDate(dateNowPlus1000ms);
-  todo.setFinishDate(dateNowPlus1000ms);
-  assertEquals(todo.getFinishDate(), dateNowPlus1000ms);
-});
+  it("should set undefined if start or finish date string has a value 'null' or 'undefined'", () => {
+    todo.setStartDate("null");
+    todo.setFinishDate("undefined");
 
-Deno.test("Todo: finish date shouldn't be less than start date", function () {
-  beforeEach();
-  const dateNowPlus1000ms = new Date(Date.now() + 1000);
-  todo.setStartDate(dateNowPlus1000ms);
-  const startDate = todo.getStartDate();
-  let dateBeforeStart: Date;
-  if (startDate) {
-    dateBeforeStart = new Date(startDate.getTime() - 1);
-  }
+    assertEquals(undefined, todo.getStartDate());
+    assertEquals(undefined, todo.getFinishDate());
+  });
 
-  assertThrows(
-    () => todo.setFinishDate(dateBeforeStart),
-    TodoError,
-    "Finish date should be greater or equals than start date.",
-  );
-});
+  it("finish date can be equals to start date", () => {
+    const dateNowPlus1000ms = new Date(Date.now() + 1000);
+    todo.setStartDate(dateNowPlus1000ms);
+    todo.setFinishDate(dateNowPlus1000ms);
+    assertEquals(todo.getFinishDate(), dateNowPlus1000ms);
+  });
 
-Deno.test("Todo: should get the status INCOMPLETE when is created", function () {
-  beforeEach();
-  const status = todo.getStatus();
+  it("finish date shouldn't be less than start date", () => {
+    const dateNowPlus1000ms = new Date(Date.now() + 1000);
+    todo.setStartDate(dateNowPlus1000ms);
+    const startDate = todo.getStartDate();
+    let dateBeforeStart: Date;
+    if (startDate) {
+      dateBeforeStart = new Date(startDate.getTime() - 1);
+    }
 
-  assertEquals(status, "INCOMPLETE");
+    assertThrows(
+      () => todo.setFinishDate(dateBeforeStart),
+      TodoError,
+      "Finish date should be greater or equals than start date.",
+    );
+  });
+
+  it("should get the status INCOMPLETE when is created", () => {
+    const status = todo.getStatus();
+
+    assertEquals(status, "INCOMPLETE");
+  });
 });
