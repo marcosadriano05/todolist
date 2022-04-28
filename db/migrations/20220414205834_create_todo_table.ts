@@ -16,6 +16,6 @@ export default class extends AbstractMigration<ClientSQLite> {
 
   /** Runs on rollback */
   async down(info: Info): Promise<void> {
-    await this.client.query("DROPT TABLE todo;");
+    await this.client.query("DROP TABLE todo;");
   }
 }
