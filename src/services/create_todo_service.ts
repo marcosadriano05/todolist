@@ -1,5 +1,5 @@
 import { Todo } from "../domain/todo/todo.ts";
-import { HttpRequest } from "./controller.ts";
+import { HttpRequest } from "../presentation/controller.ts";
 import { TodoService } from "./todo_service.ts";
 import { Repository } from "../infra/repository.ts";
 

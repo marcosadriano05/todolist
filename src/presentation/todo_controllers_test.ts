@@ -10,7 +10,7 @@ import { Todo } from "../domain/todo/todo.ts";
 import { HttpRequest } from "./controller.ts";
 
 import { CreateTodoController } from "./todo_controllers.ts";
-import { TodoService } from "./todo_service.ts";
+import { TodoService } from "../services/todo_service.ts";
 
 class FakeCreateTodoService implements TodoService {
   perform(request: HttpRequest): Promise<Todo> {

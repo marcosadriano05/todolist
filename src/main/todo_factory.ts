@@ -1,6 +1,6 @@
 import { Controller } from "../presentation/controller.ts";
 import { CreateTodoController } from "../presentation/todo_controllers.ts";
-import { CreateTodoService } from "../presentation/create_todo_service.ts";
+import { CreateTodoService } from "../services/create_todo_service.ts";
 import { SqliteTodoRepository } from "../infra/sqlite_todo_repository.ts";
 import { DB } from "../../external/sqlite.ts";
 

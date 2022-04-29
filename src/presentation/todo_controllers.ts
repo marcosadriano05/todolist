@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
-import { TodoService } from "./todo_service.ts";
+import { TodoService } from "../services/todo_service.ts";
 
 export class CreateTodoController implements Controller {
   constructor(
