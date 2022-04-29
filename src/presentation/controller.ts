@@ -1,5 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 export interface HttpRequest {
+  params?: any;
   body?: any;
 }
 
