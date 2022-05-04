@@ -1,5 +1,6 @@
 import {
   assertEquals,
+  assertExists,
   beforeEach,
   describe,
   it,
@@ -27,11 +28,21 @@ beforeEach(() => {
 describe("GetTodoController", () => {
   it("should return status 200 on success", async () => {
     const response = await getTodoController.handle({
-      params: id,
+      params: { id },
     });
 
     assertEquals(response.statusCode, 200);
     assertEquals(response.body, fakeTodo);
     assertEquals(response.body.id, id);
+  });
+
+  it("should return status 500 if Todo has a diferent id", async () => {
+    const response = await getTodoController.handle({
+      params: { id: "any_id" },
+    });
+
+    assertEquals(response.statusCode, 500);
+    assertExists(response.body.message);
+    assertEquals(response.body.message, "Todo not found.");
   });
 });

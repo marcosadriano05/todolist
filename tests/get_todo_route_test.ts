@@ -44,3 +44,33 @@ Deno.test({
     : true,
   fn: get_todo_with_id_route_param,
 });
+
+async function get_todo_returns_status_500() {
+  const message = "Todo not found.";
+  await superdeno(app)
+    .get("/todo/wrong-id")
+    .set("Content-Type", "application/json")
+    .expect((response) => {
+      if (response.status !== 500) {
+        fail("Status should be 500.");
+      }
+      if (!response.body) {
+        fail("Should have a body response.");
+      }
+      if (!response.body.message) {
+        fail("Body should has property message.");
+      }
+      if (response.body.message !== message) {
+        fail("Wrong message returned.");
+      }
+    });
+}
+
+Deno.test({
+  name:
+    "Integration: Route GET /todo/:id should returns status 500 if no todo is founded",
+  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
+    ? false
+    : true,
+  fn: get_todo_returns_status_500,
+});
