@@ -1,10 +1,10 @@
-import { fail, superoak } from "../external/tests.ts";
+import { fail, superdeno } from "../external/tests.ts";
 
 import { app } from "../src/main/app.ts";
 
 async function create_todo() {
-  const server = await superoak(app);
-  await server.post("/todo")
+  await superdeno(app)
+    .post("/todo")
     .set("Content-Type", "application/json")
     .send({
       title: "Any title",
@@ -35,8 +35,8 @@ Deno.test({
 });
 
 async function create_todo_without_title() {
-  const server = await superoak(app);
-  await server.post("/todo")
+  await superdeno(app)
+    .post("/todo")
     .set("Content-Type", "application/json")
     .send({
       description: "Any description",

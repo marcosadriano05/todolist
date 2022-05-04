@@ -9,4 +9,4 @@ export {
   it,
 } from "../deps.ts";
 
-export { superoak } from "../deps.ts";
+export { superdeno } from "../deps.ts";

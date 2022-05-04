@@ -1,13 +1,10 @@
-import { Context, Router } from "../../external/oak.ts";
-import { oakAdapter } from "./oak_adapter.ts";
+import { Router } from "../../external/opine.ts";
+import { opineAdapter } from "./opine_adapter.ts";
 import { createTodoController } from "./todo_factory.ts";
 
-const router = new Router();
+const router = Router();
 
-router
-  .get("/health-check", (context: Context) => {
-    context.response.status = 200;
-  })
-  .post("/todo", oakAdapter(createTodoController()));
+router.get("/health-check", (_req, res) => res.send("Health Check!"));
+router.post("/todo", opineAdapter(createTodoController()));
 
 export { router };

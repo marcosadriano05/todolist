@@ -1,3 +1,3 @@
 import { app } from "./app.ts";
 
-await app.listen({ port: 5000 });
+app.listen(5000, () => console.log("Opine on port 5000"));
