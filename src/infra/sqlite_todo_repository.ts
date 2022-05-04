@@ -6,6 +6,19 @@ import { formatToDatetime } from "../utils/date_format.ts";
 export class SqliteTodoRepository implements Repository<Todo> {
   constructor(private readonly database: DB) {}
 
+  findById(id: string | number): Promise<Todo> {
+    const todoFromDB = this.database.query(
+      `SELECT * FROM todo WHERE id = ?`,
+      [id],
+    );
+    if (todoFromDB.length > 1) {
+      throw new Error("Should have one todo.");
+    }
+    return new Promise((resolve) =>
+      resolve(fromDatabaseToTodo(todoFromDB as string[][]))
+    );
+  }
+
   save(data: Todo): Promise<Todo> {
     const formatedStartDate = data.getStartDate() instanceof Date
       ? formatToDatetime(data.getStartDate())

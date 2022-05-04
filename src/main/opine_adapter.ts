@@ -12,9 +12,9 @@ function opineAdapter(controller: Controller) {
     req: OpineRequest<ParamsDictionary, any, any>,
     res: OpineResponse<any>,
   ) => {
-    const data = req.body;
     const httpRequest: HttpRequest = {
-      body: data,
+      body: req.body,
+      params: req.params,
     };
     const httpResponse = await controller.handle(httpRequest);
     httpResponse.headers?.forEach((header) => {
