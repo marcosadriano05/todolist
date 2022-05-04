@@ -51,8 +51,7 @@ And run the command:
 deno test --unstable --allow-net --allow-env
 ```
 
-To make easy run the commands, use deno task commands that contains some
-scripts:
+To make easy run the commands, use deno task commands that contains some scripts:
 
 To run only unit tests:
 
