@@ -4,6 +4,8 @@ import {
   beforeEach,
   describe,
   it,
+  returnsNext,
+  stub,
 } from "../../external/tests.ts";
 import { HttpRequest } from "./controller.ts";
 import { TodoService } from "../services/todo_service.ts";
@@ -14,14 +16,15 @@ const id = crypto.randomUUID();
 const fakeTodo = new Todo("Fake todo", id);
 
 class FakeTodoService implements TodoService {
-  perform(request: HttpRequest): Promise<Todo> {
+  perform(_request: HttpRequest): Promise<Todo> {
     return new Promise((resolve) => resolve(fakeTodo));
   }
 }
 
 let getTodoController: GetTodoController;
+let fakeTodoService: FakeTodoService;
 beforeEach(() => {
-  const fakeTodoService = new FakeTodoService();
+  fakeTodoService = new FakeTodoService();
   getTodoController = new GetTodoController(fakeTodoService);
 });
 
@@ -39,6 +42,24 @@ describe("GetTodoController", () => {
   it("should return status 500 if Todo has a diferent id", async () => {
     const response = await getTodoController.handle({
       params: { id: "any_id" },
+    });
+
+    assertEquals(response.statusCode, 500);
+    assertExists(response.body.message);
+    assertEquals(response.body.message, "Todo not found.");
+  });
+
+  it("should return status 500 if Todo was not found", async () => {
+    stub(
+      fakeTodoService,
+      "perform",
+      returnsNext([
+        new Promise((_resolve, reject) => reject(null)),
+      ]),
+    );
+
+    const response = await getTodoController.handle({
+      params: { id },
     });
 
     assertEquals(response.statusCode, 500);

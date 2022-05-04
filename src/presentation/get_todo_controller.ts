@@ -7,10 +7,14 @@ export class GetTodoController implements Controller {
   ) {}
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const todo = await this.todoService.perform(request);
-    if (todo.getId() !== request.params.id) {
+    try {
+      const todo = await this.todoService.perform(request);
+      if (todo.getId() !== request.params.id) {
+        return { statusCode: 500, body: { message: "Todo not found." } };
+      }
+      return { statusCode: 200, body: todo };
+    } catch (_error) {
       return { statusCode: 500, body: { message: "Todo not found." } };
     }
-    return { statusCode: 200, body: todo };
   }
 }
