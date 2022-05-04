@@ -46,10 +46,10 @@ describe("GetTodoController", () => {
 
     assertEquals(response.statusCode, 500);
     assertExists(response.body.message);
-    assertEquals(response.body.message, "Todo not found.");
+    assertEquals(response.body.message, "Error to get Todo.");
   });
 
-  it("should return status 500 if Todo was not found", async () => {
+  it("should return status 404 if Todo was not found", async () => {
     stub(
       fakeTodoService,
       "perform",
@@ -62,7 +62,7 @@ describe("GetTodoController", () => {
       params: { id },
     });
 
-    assertEquals(response.statusCode, 500);
+    assertEquals(response.statusCode, 404);
     assertExists(response.body.message);
     assertEquals(response.body.message, "Todo not found.");
   });

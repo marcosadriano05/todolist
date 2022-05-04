@@ -46,7 +46,7 @@ Deno.test({
 });
 
 async function get_todo_returns_status_500() {
-  const message = "Todo not found.";
+  const message = "Error to get Todo.";
   await superdeno(app)
     .get("/todo/wrong-id")
     .set("Content-Type", "application/json")
