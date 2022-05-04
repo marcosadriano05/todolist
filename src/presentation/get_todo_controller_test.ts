@@ -66,4 +66,12 @@ describe("GetTodoController", () => {
     assertExists(response.body.message);
     assertEquals(response.body.message, "Todo not found.");
   });
+
+  it("should return status 400 if no id route param is provided", async () => {
+    const response = await getTodoController.handle({});
+
+    assertEquals(response.statusCode, 400);
+    assertExists(response.body.message);
+    assertEquals(response.body.message, "Todo id is missing.");
+  });
 });
