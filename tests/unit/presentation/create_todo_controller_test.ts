@@ -9,7 +9,7 @@ import {
 import { Todo } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 
-import { CreateTodoController } from "/src/presentation/todo_controllers.ts";
+import { CreateTodoController } from "/src/presentation/create_todo_controller.ts";
 import { TodoService } from "/src/services/todo_service.ts";
 
 class FakeCreateTodoService implements TodoService {
