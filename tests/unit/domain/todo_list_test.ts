@@ -7,9 +7,9 @@ import {
   it,
 } from "/external/tests.ts";
 import { v4 } from "/external/uuid.ts";
-import { Todo } from "../todo/todo.ts";
-import { TodoList } from "./todo_list.ts";
-import { TodoListError } from "./todo_list_error.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
+import { TodoList } from "/src/domain/todo_list/todo_list.ts";
+import { TodoListError } from "/src/domain/todo_list/todo_list_error.ts";
 
 let todoList: TodoList;
 let todo1: Todo;

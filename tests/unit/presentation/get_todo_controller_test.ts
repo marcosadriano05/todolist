@@ -7,10 +7,10 @@ import {
   returnsNext,
   stub,
 } from "/external/tests.ts";
-import { HttpRequest } from "./controller.ts";
+import { HttpRequest } from "/src/presentation/controller.ts";
 import { TodoService } from "/src/services/todo_service.ts";
 import { Todo } from "/src/domain/todo/todo.ts";
-import { GetTodoController } from "./get_todo_controller.ts";
+import { GetTodoController } from "/src/presentation/get_todo_controller.ts";
 
 const id = crypto.randomUUID();
 const fakeTodo = new Todo("Fake todo", id);

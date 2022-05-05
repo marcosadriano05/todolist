@@ -1,6 +1,6 @@
 import { assertEquals, beforeEach, describe, it } from "/external/tests.ts";
 
-import { TodoStatus } from "./todo_status.ts";
+import { TodoStatus } from "/src/domain/todo/todo_status.ts";
 
 let todoStatus: TodoStatus;
 

@@ -7,8 +7,8 @@ import {
   it,
 } from "/external/tests.ts";
 import { v4 } from "/external/uuid.ts";
-import { Todo } from "./todo.ts";
-import { TodoError } from "./todo_error.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
+import { TodoError } from "/src/domain/todo/todo_error.ts";
 
 let todo: Todo;
 
