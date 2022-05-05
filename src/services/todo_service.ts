@@ -4,3 +4,7 @@ import { HttpRequest } from "/src/presentation/controller.ts";
 export interface GetOneTodoService {
   perform(request: HttpRequest): Promise<Todo>;
 }
+
+export interface GetAllTodoService {
+  perform(request: HttpRequest): Promise<Todo[]>;
+}
