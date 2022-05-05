@@ -8,14 +8,14 @@ import {
   stub,
 } from "/external/tests.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
-import { TodoService } from "/src/services/todo_service.ts";
+import { GetOneTodoService } from "/src/services/todo_service.ts";
 import { Todo } from "/src/domain/todo/todo.ts";
 import { GetTodoController } from "/src/presentation/get_todo_controller.ts";
 
 const id = crypto.randomUUID();
 const fakeTodo = new Todo("Fake todo", id);
 
-class FakeTodoService implements TodoService {
+class FakeTodoService implements GetOneTodoService {
   perform(_request: HttpRequest): Promise<Todo> {
     return new Promise((resolve) => resolve(fakeTodo));
   }

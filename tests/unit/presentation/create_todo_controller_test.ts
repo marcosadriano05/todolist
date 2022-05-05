@@ -10,9 +10,9 @@ import { Todo } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 
 import { CreateTodoController } from "/src/presentation/create_todo_controller.ts";
-import { TodoService } from "/src/services/todo_service.ts";
+import { GetOneTodoService } from "/src/services/todo_service.ts";
 
-class FakeCreateTodoService implements TodoService {
+class FakeCreateTodoService implements GetOneTodoService {
   perform(request: HttpRequest): Promise<Todo> {
     const todo = new Todo(request.body.title);
     todo.setDescription(request.body.description);

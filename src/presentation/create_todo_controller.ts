@@ -1,9 +1,9 @@
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
-import { TodoService } from "/src/services/todo_service.ts";
+import { GetOneTodoService } from "/src/services/todo_service.ts";
 
 export class CreateTodoController implements Controller {
   constructor(
-    private readonly createTodoService: TodoService,
+    private readonly createTodoService: GetOneTodoService,
   ) {}
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
