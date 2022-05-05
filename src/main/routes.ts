@@ -1,4 +1,4 @@
-import { Router } from "../../external/opine.ts";
+import { Router } from "/external/opine.ts";
 import { opineAdapter } from "./opine_adapter.ts";
 import { createTodoController, getTodoController } from "./todo_factory.ts";
 

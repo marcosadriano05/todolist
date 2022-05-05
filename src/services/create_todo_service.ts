@@ -1,7 +1,7 @@
-import { Todo } from "../domain/todo/todo.ts";
-import { HttpRequest } from "../presentation/controller.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
+import { HttpRequest } from "/src/presentation/controller.ts";
 import { TodoService } from "./todo_service.ts";
-import { Repository } from "../infra/repository.ts";
+import { Repository } from "/src/infra/repository.ts";
 
 export class CreateTodoService implements TodoService {
   constructor(private readonly todoRepository: Repository<Todo>) {}

@@ -1,7 +1,7 @@
 import { Repository } from "./repository.ts";
-import { Todo } from "../domain/todo/todo.ts";
-import { DB } from "../../external/sqlite.ts";
-import { formatToDatetime } from "../utils/date_format.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
+import { DB } from "/external/sqlite.ts";
+import { formatToDatetime } from "/src/utils/date_format.ts";
 
 export class SqliteTodoRepository implements Repository<Todo> {
   constructor(private readonly database: DB) {}

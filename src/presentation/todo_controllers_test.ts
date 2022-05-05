@@ -5,12 +5,12 @@ import {
   beforeEach,
   describe,
   it,
-} from "../../external/tests.ts";
-import { Todo } from "../domain/todo/todo.ts";
+} from "/external/tests.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "./controller.ts";
 
 import { CreateTodoController } from "./todo_controllers.ts";
-import { TodoService } from "../services/todo_service.ts";
+import { TodoService } from "/src/services/todo_service.ts";
 
 class FakeCreateTodoService implements TodoService {
   perform(request: HttpRequest): Promise<Todo> {

@@ -6,10 +6,10 @@ import {
   it,
   returnsNext,
   stub,
-} from "../../external/tests.ts";
+} from "/external/tests.ts";
 import { HttpRequest } from "./controller.ts";
-import { TodoService } from "../services/todo_service.ts";
-import { Todo } from "../domain/todo/todo.ts";
+import { TodoService } from "/src/services/todo_service.ts";
+import { Todo } from "/src/domain/todo/todo.ts";
 import { GetTodoController } from "./get_todo_controller.ts";
 
 const id = crypto.randomUUID();

@@ -1,6 +1,7 @@
 {
   "tasks": {
     "run": "deno run --unstable --allow-net --allow-read --allow-write ./src/main/server.ts",
+    "compile": "deno compile --unstable --allow-net --allow-read --allow-write ./src/main/server.ts",
     "test:unit": "export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net --allow-read --allow-write",
     "test:integration": "export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net --allow-read --allow-write",
     "migration:create": "deno run -A --unstable https://deno.land/x/nessie/cli.ts make:migration",
@@ -8,5 +9,6 @@
     "migration:rollback": "deno run -A --unstable https://deno.land/x/nessie/cli.ts rollback",
     "seed:create": "deno run -A --unstable https://deno.land/x/nessie/cli.ts make:seed",
     "seed:run": "deno run -A --unstable https://deno.land/x/nessie/cli.ts seed"
-  }
+  },
+  "importMap": "./import_map.json"
 }

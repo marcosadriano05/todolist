@@ -1,5 +1,5 @@
-import { fail, superdeno } from "../external/tests.ts";
-import { app } from "../src/main/app.ts";
+import { fail, superdeno } from "/external/tests.ts";
+import { app } from "/src/main/app.ts";
 
 async function get_todo_with_id_route_param() {
   // deno-lint-ignore no-explicit-any

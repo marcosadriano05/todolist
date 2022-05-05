@@ -1,6 +1,6 @@
-import { fail, superdeno } from "../external/tests.ts";
+import { fail, superdeno } from "/external/tests.ts";
 
-import { app } from "../src/main/app.ts";
+import { app } from "/src/main/app.ts";
 
 async function health_check_returns_status_200() {
   await superdeno(app)

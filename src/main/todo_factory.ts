@@ -1,10 +1,10 @@
-import { Controller } from "../presentation/controller.ts";
-import { CreateTodoController } from "../presentation/todo_controllers.ts";
-import { GetTodoController } from "../presentation/get_todo_controller.ts";
-import { CreateTodoService } from "../services/create_todo_service.ts";
-import { GetTodoService } from "../services/get_todo_service.ts";
-import { SqliteTodoRepository } from "../infra/sqlite_todo_repository.ts";
-import { DB } from "../../external/sqlite.ts";
+import { Controller } from "/src/presentation/controller.ts";
+import { CreateTodoController } from "/src/presentation/todo_controllers.ts";
+import { GetTodoController } from "/src/presentation/get_todo_controller.ts";
+import { CreateTodoService } from "/src/services/create_todo_service.ts";
+import { GetTodoService } from "/src/services/get_todo_service.ts";
+import { SqliteTodoRepository } from "/src/infra/sqlite_todo_repository.ts";
+import { DB } from "/external/sqlite.ts";
 
 export function createTodoController(): Controller {
   const database = new DB("sqlite.db");

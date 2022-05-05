@@ -1,4 +1,4 @@
-import { json, opine } from "../../external/opine.ts";
+import { json, opine } from "/external/opine.ts";
 import { router } from "./routes.ts";
 
 const app = opine();

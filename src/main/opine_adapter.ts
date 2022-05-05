@@ -3,9 +3,9 @@ import {
   OpineRequest,
   OpineResponse,
   ParamsDictionary,
-} from "../../external/opine.ts";
+} from "/external/opine.ts";
 
-import { Controller, HttpRequest } from "../presentation/controller.ts";
+import { Controller, HttpRequest } from "/src/presentation/controller.ts";
 
 function opineAdapter(controller: Controller) {
   return async (

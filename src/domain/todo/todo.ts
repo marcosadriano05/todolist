@@ -1,7 +1,7 @@
 import { TodoError } from "./todo_error.ts";
 import { TodoStatus } from "./todo_status.ts";
 
-import { v4 } from "../../../external/uuid.ts";
+import { v4 } from "/external/uuid.ts";
 
 export class Todo {
   private id: string;
