@@ -11,6 +11,6 @@ const router = Router();
 router.get("/health-check", (_req, res) => res.send("Health Check!"));
 router.post("/todo", opineAdapter(createTodoController()));
 router.get("/todo/:id", opineAdapter(getTodoController()));
-router.get("/todos", opineAdapter(getAllTodoController()));
+router.get("/todo", opineAdapter(getAllTodoController()));
 
 export { router };

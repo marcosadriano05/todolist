@@ -29,7 +29,7 @@ async function get_all_todos() {
     });
 
   await superdeno(app)
-    .get("/todos")
+    .get("/todo")
     .set("Content-Type", "application/json")
     .expect((response) => {
       if (response.status !== 200) {
@@ -48,7 +48,7 @@ async function get_all_todos() {
 }
 
 Deno.test({
-  name: "Integration: Route GET /todos should returns status 200 on success",
+  name: "Integration: Route GET /todo should returns status 200 on success",
   ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
     ? false
     : true,
