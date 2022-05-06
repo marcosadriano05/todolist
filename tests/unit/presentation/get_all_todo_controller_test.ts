@@ -10,14 +10,14 @@ import {
   stub,
 } from "/external/tests.ts";
 import { GetAllTodoController } from "/src/presentation/get_all_todo_controller.ts";
-import { GetAllTodoService } from "/src/services/todo_service.ts";
+import { GetAllService } from "/src/services/todo_service.ts";
 
 const fakeTodoServiceResponse: Todo[] = [
   new Todo("Todo 1"),
   new Todo("Todo 2"),
 ];
 
-class FakeTodoService implements GetAllTodoService {
+class FakeTodoService implements GetAllService<Todo> {
   perform(request: HttpRequest): Promise<Todo[]> {
     return new Promise((resolve) => resolve(fakeTodoServiceResponse));
   }

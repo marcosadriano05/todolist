@@ -1,10 +1,9 @@
-import { Todo } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 
-export interface GetOneTodoService {
-  perform(request: HttpRequest): Promise<Todo>;
+export interface GetOneService<T> {
+  perform(request: HttpRequest): Promise<T>;
 }
 
-export interface GetAllTodoService {
-  perform(request: HttpRequest): Promise<Todo[]>;
+export interface GetAllService<T> {
+  perform(request: HttpRequest): Promise<T[]>;
 }
