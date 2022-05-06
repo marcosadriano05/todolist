@@ -50,4 +50,17 @@ describe("GetAllTodoController", () => {
     assertExists(response.body.message);
     assertEquals(response.body.message, "No Todo was found.");
   });
+
+  it("Should return status 500 if no GetAllTodoService throws", async () => {
+    stub(
+      fakeTodoService,
+      "perform",
+      returnsNext([new Promise((resolve, reject) => reject(null))]),
+    );
+    const response = await getAllTodoController.handle({});
+
+    assertEquals(response.statusCode, 500);
+    assertExists(response.body.message);
+    assertEquals(response.body.message, "Error to get Todos.");
+  });
 });

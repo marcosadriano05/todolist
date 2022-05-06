@@ -7,10 +7,14 @@ export class GetAllTodoController implements Controller {
   ) {}
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const todos = await this.todoService.perform(request);
-    if (todos?.length === 0) {
-      return { statusCode: 404, body: { message: "No Todo was found." } };
+    try {
+      const todos = await this.todoService.perform(request);
+      if (todos?.length === 0) {
+        return { statusCode: 404, body: { message: "No Todo was found." } };
+      }
+      return { statusCode: 200, body: todos };
+    } catch (_error) {
+      return { statusCode: 500, body: { message: "Error to get Todos." } };
     }
-    return { statusCode: 200, body: todos };
   }
 }
