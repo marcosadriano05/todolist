@@ -1,6 +1,14 @@
 import { Todo } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
-import { assertEquals, beforeEach, describe, it } from "/external/tests.ts";
+import {
+  assertEquals,
+  assertExists,
+  beforeEach,
+  describe,
+  it,
+  returnsNext,
+  stub,
+} from "/external/tests.ts";
 import { GetAllTodoController } from "/src/presentation/get_all_todo_controller.ts";
 import { GetAllTodoService } from "/src/services/todo_service.ts";
 
@@ -28,5 +36,18 @@ describe("GetAllTodoController", () => {
 
     assertEquals(response.statusCode, 200);
     assertEquals(response.body, fakeTodoServiceResponse);
+  });
+
+  it("Should return status 404 if no Todo is found", async () => {
+    stub(
+      fakeTodoService,
+      "perform",
+      returnsNext([new Promise((resolve) => resolve([]))]),
+    );
+    const response = await getAllTodoController.handle({});
+
+    assertEquals(response.statusCode, 404);
+    assertExists(response.body.message);
+    assertEquals(response.body.message, "No Todo was found.");
   });
 });
