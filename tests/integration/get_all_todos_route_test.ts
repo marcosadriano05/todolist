@@ -42,8 +42,6 @@ async function get_all_todos() {
         todo.title === "Todo 2"
       );
       if (todo1 === undefined || todo2 === undefined) {
-        console.log("todo1", todo1);
-        console.log("todo2", todo2);
         fail("Error to get Todos.");
       }
     });
