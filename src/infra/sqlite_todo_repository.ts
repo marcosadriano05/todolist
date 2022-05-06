@@ -6,6 +6,15 @@ import { formatToDatetime } from "/src/utils/date_format.ts";
 export class SqliteTodoRepository implements Repository<Todo> {
   constructor(private readonly database: DB) {}
 
+  findAll(): Promise<Todo[]> {
+    const todosFromDB = this.database.query(
+      "SELECT * FROM todo",
+    );
+    return new Promise((resolve) =>
+      resolve(fromDatabaseToTodoArray(todosFromDB as string[][]))
+    );
+  }
+
   findById(id: string | number): Promise<Todo> {
     const todoFromDB = this.database.query(
       `SELECT * FROM todo WHERE id = ?`,
@@ -62,4 +71,18 @@ function fromDatabaseToTodo(data: string[][]): Todo {
     return todo;
   }
   return new Todo("Error");
+}
+
+function fromDatabaseToTodoArray(data: string[][]): Todo[] {
+  if (data.length < 2) {
+    throw new Error("Error to convert data from database to todo array.");
+  }
+  const todos = data.map((value) => {
+    const todo = new Todo(value[1], value[0]);
+    todo.setDescription(value[2]);
+    todo.setStartDate(value[3]);
+    todo.setFinishDate(value[4]);
+    return todo;
+  });
+  return todos;
 }
