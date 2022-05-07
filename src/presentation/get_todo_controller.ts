@@ -1,6 +1,7 @@
 import { Todo } from "/src/domain/todo/todo.ts";
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
+import { badRequest, notFound, ok, serverError } from "./helpers.ts";
 
 export class GetTodoController implements Controller {
   constructor(
@@ -10,15 +11,15 @@ export class GetTodoController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       if (!request.params?.id) {
-        return { statusCode: 400, body: { message: "Todo id is missing." } };
+        return badRequest("Todo id is missing.");
       }
       const todo = await this.todoService.perform(request);
       if (todo.getId() !== request.params.id) {
-        return { statusCode: 500, body: { message: "Error to get Todo." } };
+        return serverError("Error to get Todo.");
       }
-      return { statusCode: 200, body: todo };
+      return ok(todo);
     } catch (_error) {
-      return { statusCode: 404, body: { message: "Todo not found." } };
+      return notFound("Todo not found.");
     }
   }
 }

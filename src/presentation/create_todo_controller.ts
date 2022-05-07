@@ -1,6 +1,7 @@
 import { Todo } from "/src/domain/todo/todo.ts";
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
+import { badRequest, created, serverError } from "./helpers.ts";
 
 export class CreateTodoController implements Controller {
   constructor(
@@ -10,29 +11,21 @@ export class CreateTodoController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       if (!request.body.title) {
-        return {
-          statusCode: 400,
-          body: { message: "Title property is necessary." },
-        };
+        return badRequest("Title property is necessary.");
       }
       const todo = await this.createTodoService.perform(request);
-      return {
-        statusCode: 201,
-        headers: [
-          {
-            name: "Location",
-            value: `http://localhost:5000/todo/${todo.getId()}`,
-          },
-        ],
-        body: {
-          todoId: todo.getId(),
+      const body = {
+        todoId: todo.getId(),
+      };
+      const headers = [
+        {
+          name: "Location",
+          value: `http://localhost:5000/todo/${todo.getId()}`,
         },
-      };
+      ];
+      return created(body, headers);
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: { message: error.message },
-      };
+      return serverError(error.message);
     }
   }
 }
