@@ -7,14 +7,10 @@ import {
   it,
   spy,
 } from "/external/tests.ts";
-import {
-  Controller,
-  HttpRequest,
-  HttpResponse,
-} from "/src/presentation/controller.ts";
+import { HttpRequest } from "/src/presentation/controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 import { Todo } from "/src/domain/todo/todo.ts";
-import { badRequest } from "/src/presentation/helpers.ts";
+import { EditTodoController } from "/src/presentation/edit_todo_controller.ts";
 
 const fakeId = crypto.randomUUID();
 
@@ -22,23 +18,6 @@ class FakeEditTodoService implements GetOneService<Todo> {
   perform(request: HttpRequest): Promise<Todo> {
     const todo = new Todo("Any Todo", fakeId);
     return new Promise((resolve) => resolve(todo));
-  }
-}
-
-export class EditTodoController implements Controller {
-  constructor(
-    private readonly editTodoService: GetOneService<Todo>,
-  ) {}
-
-  async handle(request: HttpRequest): Promise<HttpResponse> {
-    if (!request.params?.id) {
-      return badRequest("The route must have an id.");
-    }
-    if (!request.body) {
-      return { statusCode: 100 };
-    }
-    await this.editTodoService.perform(request);
-    return { statusCode: 100 };
   }
 }
 
