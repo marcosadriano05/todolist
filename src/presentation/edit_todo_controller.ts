@@ -1,7 +1,7 @@
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 import { Todo } from "/src/domain/todo/todo.ts";
-import { badRequest } from "./helpers.ts";
+import { badRequest, ok } from "./helpers.ts";
 
 export class EditTodoController implements Controller {
   constructor(
@@ -15,7 +15,7 @@ export class EditTodoController implements Controller {
     if (!request.body) {
       return badRequest("The body should have one or more params.");
     }
-    await this.editTodoService.perform(request);
-    return { statusCode: 100 };
+    const editedTodo = await this.editTodoService.perform(request);
+    return ok(editedTodo);
   }
 }

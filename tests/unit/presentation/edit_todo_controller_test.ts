@@ -61,4 +61,22 @@ describe("EditTodoController", () => {
       "The body should have one or more params.",
     );
   });
+
+  it("should return status 200 on success", async () => {
+    const response = await editTodoController.handle({
+      params: {
+        id: fakeId,
+      },
+      body: {
+        title: "Any Todo",
+      },
+    });
+
+    assertEquals(response.statusCode, 200);
+    assertEquals(
+      response.body.title,
+      "Any Todo",
+    );
+    assertEquals(response.body.id, fakeId);
+  });
 });
