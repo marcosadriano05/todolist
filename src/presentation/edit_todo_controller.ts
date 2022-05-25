@@ -13,7 +13,7 @@ export class EditTodoController implements Controller {
       return badRequest("The route must have an id.");
     }
     if (!request.body) {
-      return { statusCode: 100 };
+      return badRequest("The body should have one or more params.");
     }
     await this.editTodoService.perform(request);
     return { statusCode: 100 };

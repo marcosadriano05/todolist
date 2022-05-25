@@ -46,4 +46,19 @@ describe("EditTodoController", () => {
     });
     assertSpyCalls(performSpy, 0);
   });
+
+  it("should return status 400 if no body param is provided", async () => {
+    const response = await editTodoController.handle({
+      params: {
+        id: fakeId,
+      },
+    });
+
+    assertEquals(response.statusCode, 400);
+    assertExists(response.body["message"]);
+    assertEquals(
+      response.body.message,
+      "The body should have one or more params.",
+    );
+  });
 });
