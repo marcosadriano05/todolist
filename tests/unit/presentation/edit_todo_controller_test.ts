@@ -5,7 +5,9 @@ import {
   beforeEach,
   describe,
   it,
+  returnsNext,
   spy,
+  stub,
 } from "/external/tests.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
@@ -78,5 +80,28 @@ describe("EditTodoController", () => {
       "Any Todo",
     );
     assertEquals(response.body.id, fakeId);
+  });
+
+  it("should return status 500 service throws", async () => {
+    stub(
+      fakeEditTodoService,
+      "perform",
+      returnsNext([new Promise((resolve, reject) => reject(null))]),
+    );
+    const response = await editTodoController.handle({
+      params: {
+        id: fakeId,
+      },
+      body: {
+        title: "Any Todo",
+      },
+    });
+
+    assertEquals(response.statusCode, 500);
+    assertExists(response.body["message"]);
+    assertEquals(
+      response.body.message,
+      "Error to edit Todo.",
+    );
   });
 });
