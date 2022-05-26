@@ -18,4 +18,4 @@ export type {
   ParamsDictionary,
 } from "https://deno.land/x/opine@2.2.0/mod.ts";
 
-export { DB } from "https://deno.land/x/sqlite@v3.4.0/mod.ts";
+export * from "https://deno.land/x/postgres@v0.15.0/mod.ts";
