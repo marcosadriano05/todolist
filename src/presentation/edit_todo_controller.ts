@@ -18,7 +18,8 @@ export class EditTodoController implements Controller {
       }
       const editedTodo = await this.editTodoService.perform(request);
       return ok(editedTodo);
-    } catch (_error) {
+    } catch (error) {
+      console.log(error);
       return serverError("Error to edit Todo.");
     }
   }
