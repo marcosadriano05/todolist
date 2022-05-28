@@ -12,25 +12,23 @@ import {
 import { GetAllTodoController } from "/src/presentation/get_all_todo_controller.ts";
 import { GetAllService } from "/src/services/todo_service.ts";
 
-const fakeTodoServiceResponse: Todo[] = [
+const fakeTodos: Todo[] = [
   new Todo("Todo 1"),
   new Todo("Todo 2"),
 ];
 
+const fakeTodoServiceResponse: TodoType[] = fakeTodos.map((fakeTodo) => ({
+  id: fakeTodo.getId(),
+  title: fakeTodo.getTitle(),
+  description: fakeTodo.getDescription(),
+  startDate: fakeTodo.getStartDate(),
+  finishDate: fakeTodo.getFinishDate(),
+  status: fakeTodo.getStatus(),
+}));
+
 class FakeTodoService implements GetAllService<TodoType> {
   perform(request: HttpRequest): Promise<TodoType[]> {
-    return new Promise((resolve) =>
-      resolve(
-        fakeTodoServiceResponse.map((fakeTodo) => ({
-          id: fakeTodo.getId(),
-          title: fakeTodo.getTitle(),
-          description: fakeTodo.getTitle(),
-          startDate: fakeTodo.getStartDate(),
-          finishDate: fakeTodo.getFinishDate(),
-          status: "Any status",
-        })),
-      )
-    );
+    return new Promise((resolve) => resolve(fakeTodoServiceResponse));
   }
 }
 

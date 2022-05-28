@@ -1,7 +1,10 @@
 import { fail, superdeno } from "/external/tests.ts";
 import { app } from "/src/main/app.ts";
+import { client } from "/src/main/database.ts";
 
 async function get_todo_with_id_route_param() {
+  await client.connect();
+
   // deno-lint-ignore no-explicit-any
   let responseBody: any;
   await superdeno(app)
@@ -34,6 +37,8 @@ async function get_todo_with_id_route_param() {
         fail("Todo id should be equal to route param id.");
       }
     });
+
+  await client.end();
 }
 
 Deno.test({
@@ -45,14 +50,16 @@ Deno.test({
   fn: get_todo_with_id_route_param,
 });
 
-async function get_todo_returns_status_500() {
-  const message = "Error to get Todo.";
+async function get_todo_returns_status_400() {
+  await client.connect();
+
+  const message = "Id should be UUID.";
   await superdeno(app)
     .get("/todo/wrong-id")
     .set("Content-Type", "application/json")
     .expect((response) => {
-      if (response.status !== 500) {
-        fail("Status should be 500.");
+      if (response.status !== 400) {
+        fail("Status should be 400.");
       }
       if (!response.body) {
         fail("Should have a body response.");
@@ -64,13 +71,15 @@ async function get_todo_returns_status_500() {
         fail("Wrong message returned.");
       }
     });
+
+  await client.end();
 }
 
 Deno.test({
   name:
-    "Integration: Route GET /todo/:id should returns status 500 if no todo is founded",
+    "Integration: Route GET /todo/:id should returns status 404 if no todo is founded",
   ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
     ? false
     : true,
-  fn: get_todo_returns_status_500,
+  fn: get_todo_returns_status_400,
 });
