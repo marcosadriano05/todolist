@@ -8,8 +8,9 @@ purposes.
 
 Its needed Deno runtime installed.
 
-First of all, you need to run all migrations to generate the Sqlite database
-with all tables. Run this command:
+The database used is Postgresql 14 on port 5432.
+
+You need to run all migrations to generate all tables. Run this command:
 
 ```shell
 deno task migration:run
@@ -30,25 +31,19 @@ deno task run
 or
 
 ```shell
-deno run --unstable --allow-net ./src/main/server.ts
+deno run --unstable --allow-env --allow-net --allow-read --allow-write ./src/main/server.ts
 ```
 
 To run the unit tests, run the command:
 
 ```shell
-deno test --unstable --allow-net --allow-env
+export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net --allow-read --allow-write
 ```
 
-To run the integration tests too, its needed to create an env variable:
+To run the integration tests too, its needed to set the env variable to true:
 
 ```shell
-export INTEGRATION_TEST_ENEABLED=true
-```
-
-And run the command:
-
-```shell
-deno test --unstable --allow-net --allow-env
+export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net --allow-read --allow-write
 ```
 
 To make easy run the commands, use deno task commands that contains some
