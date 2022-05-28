@@ -1,7 +1,10 @@
 import { fail, superdeno } from "/external/tests.ts";
 import { app } from "/src/main/app.ts";
+import { client } from "/src/main/database.ts";
 
 async function get_all_todos() {
+  await client.connect();
+
   await superdeno(app)
     .post("/todo")
     .set("Content-Type", "application/json")
@@ -45,6 +48,8 @@ async function get_all_todos() {
         fail("Error to get Todos.");
       }
     });
+
+  await client.end();
 }
 
 Deno.test({

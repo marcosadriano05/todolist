@@ -1,4 +1,4 @@
-import { Todo } from "/src/domain/todo/todo.ts";
+import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 import {
   assertEquals,
@@ -17,9 +17,20 @@ const fakeTodoServiceResponse: Todo[] = [
   new Todo("Todo 2"),
 ];
 
-class FakeTodoService implements GetAllService<Todo> {
-  perform(request: HttpRequest): Promise<Todo[]> {
-    return new Promise((resolve) => resolve(fakeTodoServiceResponse));
+class FakeTodoService implements GetAllService<TodoType> {
+  perform(request: HttpRequest): Promise<TodoType[]> {
+    return new Promise((resolve) =>
+      resolve(
+        fakeTodoServiceResponse.map((fakeTodo) => ({
+          id: fakeTodo.getId(),
+          title: fakeTodo.getTitle(),
+          description: fakeTodo.getTitle(),
+          startDate: fakeTodo.getStartDate(),
+          finishDate: fakeTodo.getFinishDate(),
+          status: "Any status",
+        })),
+      )
+    );
   }
 }
 

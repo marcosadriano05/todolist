@@ -1,14 +1,14 @@
-import { Todo } from "/src/domain/todo/todo.ts";
+import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { Repository } from "./repository.ts";
 import { Client } from "/external/postgresql.ts";
 import { formatToDatetime } from "/src/utils/date_format.ts";
 
-export class PostgresTodoRepository implements Repository<Todo> {
+export class PostgresTodoRepository implements Repository<Todo, TodoType> {
   constructor(
     private readonly client: Client,
   ) {}
 
-  async findById(id: string | number): Promise<Todo> {
+  async findById(id: string | number): Promise<TodoType> {
     const data = await this.client.queryObject<Todo>(
       "SELECT * FROM todo WHERE id = $1;",
       [id],
@@ -16,12 +16,12 @@ export class PostgresTodoRepository implements Repository<Todo> {
     return transformInTodo(data);
   }
 
-  async findAll(): Promise<Todo[]> {
+  async findAll(): Promise<TodoType[]> {
     const data = await this.client.queryObject<Todo>("SELECT * FROM todo;");
     return transformInTodoArray(data);
   }
 
-  async save(data: Todo): Promise<Todo> {
+  async save(data: Todo): Promise<TodoType> {
     const formatedStartDate = data.getStartDate() instanceof Date
       ? formatToDatetime(data.getStartDate())
       : null;
@@ -53,7 +53,7 @@ export class PostgresTodoRepository implements Repository<Todo> {
     return await this.findById(data.getId());
   }
 
-  async edit(data: Todo): Promise<Todo> {
+  async edit(data: Todo): Promise<TodoType> {
     const formatedStartDate = data.getStartDate() instanceof Date
       ? formatToDatetime(data.getStartDate())
       : null;
@@ -79,21 +79,29 @@ export class PostgresTodoRepository implements Repository<Todo> {
   }
 }
 
-function transformInTodo(data: any): Todo {
+function transformInTodo(data: any): TodoType {
   const todoObj = data.rows[0];
-  const todo = new Todo(todoObj.title, todoObj.id);
-  todo.setDescription(todoObj.description);
-  todo.setStartDate(todoObj.start_date);
-  todo.setFinishDate(todoObj.finish_date);
+  const todo: TodoType = {
+    title: todoObj.title,
+    id: todoObj.id,
+    description: todoObj.description,
+    startDate: todoObj.start_date,
+    finishDate: todoObj.finish_date,
+    status: todoObj.status,
+  };
   return todo;
 }
 
-function transformInTodoArray(data: any): Todo[] {
+function transformInTodoArray(data: any): TodoType[] {
   return data.rows.map((todoObj: any) => {
-    const todo = new Todo(todoObj.title, todoObj.id);
-    todo.setDescription(todoObj.description);
-    todo.setStartDate(todoObj.start_date);
-    todo.setFinishDate(todoObj.finish_date);
+    const todo: TodoType = {
+      title: todoObj.title,
+      id: todoObj.id,
+      description: todoObj.description,
+      startDate: todoObj.start_date,
+      finishDate: todoObj.finish_date,
+      status: todoObj.status,
+    };
     return todo;
   });
 }

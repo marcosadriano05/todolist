@@ -1,6 +1,9 @@
-export interface Repository<T> {
-  findById(id: string | number): Promise<T>;
-  findAll(): Promise<T[]>;
-  save(data: T): Promise<T>;
-  edit(data: T): Promise<T>;
+/**
+ * Repository interface where generics T and R represents the input data and the response data.
+ */
+export interface Repository<T, R> {
+  findById(id: string | number): Promise<R>;
+  findAll(): Promise<R[]>;
+  save(data: T): Promise<R>;
+  edit(data: T): Promise<R>;
 }

@@ -9,15 +9,24 @@ import {
 } from "/external/tests.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
-import { Todo } from "/src/domain/todo/todo.ts";
+import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { GetTodoController } from "/src/presentation/get_todo_controller.ts";
 
 const id = crypto.randomUUID();
 const fakeTodo = new Todo("Fake todo", id);
 
-class FakeTodoService implements GetOneService<Todo> {
-  perform(_request: HttpRequest): Promise<Todo> {
-    return new Promise((resolve) => resolve(fakeTodo));
+class FakeTodoService implements GetOneService<TodoType> {
+  perform(_request: HttpRequest): Promise<TodoType> {
+    return new Promise((resolve) =>
+      resolve({
+        id: fakeTodo.getId(),
+        title: fakeTodo.getTitle(),
+        description: fakeTodo.getTitle(),
+        startDate: fakeTodo.getStartDate(),
+        finishDate: fakeTodo.getFinishDate(),
+        status: "Any status",
+      })
+    );
   }
 }
 
