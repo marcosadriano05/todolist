@@ -1,8 +1,11 @@
 import { fail, superdeno } from "/external/tests.ts";
+import { client } from "/src/main/database.ts";
 
 import { app } from "/src/main/app.ts";
 
 async function create_todo() {
+  await client.connect();
+
   await superdeno(app)
     .post("/todo")
     .set("Content-Type", "application/json")
@@ -24,6 +27,8 @@ async function create_todo() {
         fail("Body should has property todoId.");
       }
     });
+
+  await client.end();
 }
 
 Deno.test({
@@ -35,6 +40,8 @@ Deno.test({
 });
 
 async function create_todo_without_title() {
+  await client.connect();
+
   await superdeno(app)
     .post("/todo")
     .set("Content-Type", "application/json")
@@ -46,6 +53,8 @@ async function create_todo_without_title() {
         fail("Status should be 400.");
       }
     });
+
+  await client.end();
 }
 
 Deno.test({

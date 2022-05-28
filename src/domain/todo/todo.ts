@@ -3,6 +3,15 @@ import { TodoStatus } from "./todo_status.ts";
 
 import { v4 } from "/external/uuid.ts";
 
+export type TodoType = {
+  id: string;
+  title: string;
+  description: string;
+  startDate?: Date;
+  finishDate?: Date;
+  status: string;
+};
+
 export class Todo {
   private id: string;
   private title: string;

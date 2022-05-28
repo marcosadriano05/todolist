@@ -1,11 +1,11 @@
-import { Todo } from "/src/domain/todo/todo.ts";
+import { TodoType } from "/src/domain/todo/todo.ts";
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 import { badRequest, created, serverError } from "./helpers.ts";
 
 export class CreateTodoController implements Controller {
   constructor(
-    private readonly createTodoService: GetOneService<Todo>,
+    private readonly createTodoService: GetOneService<TodoType>,
   ) {}
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
@@ -15,12 +15,12 @@ export class CreateTodoController implements Controller {
       }
       const todo = await this.createTodoService.perform(request);
       const body = {
-        todoId: todo.getId(),
+        todoId: todo.id,
       };
       const headers = [
         {
           name: "Location",
-          value: `http://localhost:5000/todo/${todo.getId()}`,
+          value: `http://localhost:5000/todo/${todo.id}`,
         },
       ];
       return created(body, headers);

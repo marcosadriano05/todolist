@@ -9,15 +9,23 @@ import {
 } from "/external/tests.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
-import { Todo } from "/src/domain/todo/todo.ts";
+import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { GetTodoController } from "/src/presentation/get_todo_controller.ts";
 
 const id = crypto.randomUUID();
 const fakeTodo = new Todo("Fake todo", id);
+const fakeTodoServiceResponse: TodoType = {
+  id: fakeTodo.getId(),
+  title: fakeTodo.getTitle(),
+  description: fakeTodo.getTitle(),
+  startDate: fakeTodo.getStartDate(),
+  finishDate: fakeTodo.getFinishDate(),
+  status: "Any status",
+};
 
-class FakeTodoService implements GetOneService<Todo> {
-  perform(_request: HttpRequest): Promise<Todo> {
-    return new Promise((resolve) => resolve(fakeTodo));
+class FakeTodoService implements GetOneService<TodoType> {
+  perform(_request: HttpRequest): Promise<TodoType> {
+    return new Promise((resolve) => resolve(fakeTodoServiceResponse));
   }
 }
 
@@ -35,18 +43,18 @@ describe("GetTodoController", () => {
     });
 
     assertEquals(response.statusCode, 200);
-    assertEquals(response.body, fakeTodo);
+    assertEquals(response.body, fakeTodoServiceResponse);
     assertEquals(response.body.id, id);
   });
 
-  it("should return status 500 if Todo has a diferent id", async () => {
+  it("should return status 400 if id is not UUID", async () => {
     const response = await getTodoController.handle({
       params: { id: "any_id" },
     });
 
-    assertEquals(response.statusCode, 500);
+    assertEquals(response.statusCode, 400);
     assertExists(response.body.message);
-    assertEquals(response.body.message, "Error to get Todo.");
+    assertEquals(response.body.message, "Id should be UUID.");
   });
 
   it("should return status 404 if Todo was not found", async () => {

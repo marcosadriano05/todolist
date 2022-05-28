@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "run": "deno run --unstable --allow-net --allow-read --allow-write ./src/main/server.ts",
+    "run": "deno run --unstable --allow-env --allow-net --allow-read --allow-write ./src/main/server.ts",
     "compile": "deno compile --unstable --allow-net --allow-read --allow-write ./src/main/server.ts",
     "test:unit": "export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net --allow-read --allow-write",
     "test:integration": "export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net --allow-read --allow-write",

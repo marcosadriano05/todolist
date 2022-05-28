@@ -6,18 +6,27 @@ import {
   describe,
   it,
 } from "/external/tests.ts";
-import { Todo } from "/src/domain/todo/todo.ts";
+import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 
 import { CreateTodoController } from "/src/presentation/create_todo_controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 
-class FakeCreateTodoService implements GetOneService<Todo> {
-  perform(request: HttpRequest): Promise<Todo> {
-    const todo = new Todo(request.body.title);
-    todo.setDescription(request.body.description);
-    todo.setStartDate(request.body.startDate);
-    return new Promise((resolve) => resolve(todo));
+class FakeCreateTodoService implements GetOneService<TodoType> {
+  perform(request: HttpRequest): Promise<TodoType> {
+    const fakeTodo = new Todo(request.body.title);
+    fakeTodo.setDescription(request.body.description);
+    fakeTodo.setStartDate(request.body.startDate);
+    return new Promise((resolve) =>
+      resolve({
+        id: fakeTodo.getId(),
+        title: fakeTodo.getTitle(),
+        description: fakeTodo.getTitle(),
+        startDate: fakeTodo.getStartDate(),
+        finishDate: fakeTodo.getFinishDate(),
+        status: "Any status",
+      })
+    );
   }
 }
 
