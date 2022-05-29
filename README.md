@@ -28,26 +28,11 @@ To run the application:
 deno task run
 ```
 
-or
-
-```shell
-deno run --unstable --allow-env --allow-net --allow-read --allow-write ./src/main/server.ts
-```
-
 To run the unit tests, run the command:
 
 ```shell
-export INTEGRATION_TEST_ENEABLED=false && deno test --unstable --allow-env --allow-net --allow-read --allow-write
+deno task test
 ```
-
-To run the integration tests too, its needed to set the env variable to true:
-
-```shell
-export INTEGRATION_TEST_ENEABLED=true && deno test --unstable --allow-env --allow-net --allow-read --allow-write
-```
-
-To make easy run the commands, use deno task commands that contains some
-scripts:
 
 To run only unit tests:
 
