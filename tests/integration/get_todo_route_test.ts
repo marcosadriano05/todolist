@@ -44,9 +44,6 @@ async function get_todo_with_id_route_param() {
 Deno.test({
   name:
     "Integration: Route GET /todo/:id should returns status 200 if todo is returned",
-  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
-    ? false
-    : true,
   fn: get_todo_with_id_route_param,
 });
 
@@ -78,8 +75,5 @@ async function get_todo_returns_status_400() {
 Deno.test({
   name:
     "Integration: Route GET /todo/:id should returns status 404 if no todo is founded",
-  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
-    ? false
-    : true,
   fn: get_todo_returns_status_400,
 });

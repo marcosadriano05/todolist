@@ -54,8 +54,5 @@ async function get_all_todos() {
 
 Deno.test({
   name: "Integration: Route GET /todo should returns status 200 on success",
-  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
-    ? false
-    : true,
   fn: get_all_todos,
 });

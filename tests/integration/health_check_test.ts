@@ -14,8 +14,5 @@ async function health_check_returns_status_200() {
 
 Deno.test({
   name: "Integration: Route GET /health-check should returns status 200",
-  ignore: Deno.env.get("INTEGRATION_TEST_ENEABLED")?.match("true")
-    ? false
-    : true,
   fn: health_check_returns_status_200,
 });
