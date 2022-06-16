@@ -5,7 +5,7 @@ export const client = new postgres.Client({
   password: "postgres",
   database: "todolist",
   hostname: "localhost",
-  port: 5432,
+  port: 5435,
 });
 
 export const connect = async () => {

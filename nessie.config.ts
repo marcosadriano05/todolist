@@ -3,7 +3,7 @@ import { nessie } from "./deps.ts";
 const client = new nessie.ClientPostgreSQL({
   database: "todolist",
   hostname: "localhost",
-  port: 5432,
+  port: 5435,
   user: "postgres",
   password: "postgres",
 });

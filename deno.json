@@ -9,7 +9,8 @@
     "migration:run": "deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate",
     "migration:rollback": "deno run -A --unstable https://deno.land/x/nessie/cli.ts rollback",
     "seed:create": "deno run -A --unstable https://deno.land/x/nessie/cli.ts make:seed",
-    "seed:run": "deno run -A --unstable https://deno.land/x/nessie/cli.ts seed"
+    "seed:run": "deno run -A --unstable https://deno.land/x/nessie/cli.ts seed",
+    "setup:dev": "chmod +x ./scripts/setup_dev.sh && ./scripts/setup_dev.sh"
   },
   "importMap": "./import_map.json"
 }
