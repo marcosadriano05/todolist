@@ -1,1 +1,1 @@
-export { Client } from "../deps.ts";
+export { postgres } from "../deps.ts";

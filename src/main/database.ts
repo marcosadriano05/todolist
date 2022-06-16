@@ -1,6 +1,6 @@
-import { Client } from "/external/postgresql.ts";
+import { postgres } from "/external/postgresql.ts";
 
-export const client = new Client({
+export const client = new postgres.Client({
   user: "postgres",
   password: "postgres",
   database: "todolist",

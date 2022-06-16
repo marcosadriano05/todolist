@@ -1,6 +1,6 @@
-import { ClientPostgreSQL, NessieConfig } from "./deps.ts";
+import { nessie } from "./deps.ts"
 
-const client = new ClientPostgreSQL({
+const client = new nessie.ClientPostgreSQL({
   database: "todolist",
   hostname: "localhost",
   port: 5432,
@@ -8,7 +8,7 @@ const client = new ClientPostgreSQL({
   password: "postgres",
 });
 
-const config: NessieConfig = {
+const config: nessie.NessieConfig = {
   client,
   migrationFolders: ["./db/migrations"],
   seedFolders: ["./db/seeds"],

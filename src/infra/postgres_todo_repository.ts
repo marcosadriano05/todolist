@@ -1,11 +1,11 @@
 import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { Repository } from "./repository.ts";
-import { Client } from "/external/postgresql.ts";
+import { postgres } from "/external/postgresql.ts";
 import { formatToDatetime } from "/src/utils/date_format.ts";
 
 export class PostgresTodoRepository implements Repository<Todo, TodoType> {
   constructor(
-    private readonly client: Client,
+    private readonly client: postgres.Client,
   ) {}
 
   async findById(id: string | number): Promise<TodoType> {
