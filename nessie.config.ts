@@ -1,4 +1,4 @@
-import { nessie } from "./deps.ts"
+import { nessie } from "./deps.ts";
 
 const client = new nessie.ClientPostgreSQL({
   database: "todolist",

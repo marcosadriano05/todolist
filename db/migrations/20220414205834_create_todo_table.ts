@@ -1,4 +1,4 @@
-import { nessie} from "../../deps.ts";
+import { nessie } from "../../deps.ts";
 
 export default class extends nessie.AbstractMigration<nessie.ClientPostgreSQL> {
   /** Runs on migrate */
