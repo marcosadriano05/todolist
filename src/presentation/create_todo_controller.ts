@@ -15,7 +15,7 @@ export class CreateTodoController implements Controller {
       }
       const todo = await this.createTodoService.perform(request);
       const body = {
-        todoId: todo.id,
+        id: todo.id,
       };
       const headers = [
         {

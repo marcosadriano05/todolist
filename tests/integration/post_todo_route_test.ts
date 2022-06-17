@@ -23,8 +23,8 @@ async function create_todo() {
       if (!response.body) {
         fail("Should have a body response.");
       }
-      if (!response.body.todoId) {
-        fail("Body should has property todoId.");
+      if (!response.body.id) {
+        fail("Body should has property id.");
       }
     });
 

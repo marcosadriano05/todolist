@@ -15,7 +15,7 @@ async function edit_todo() {
       description: "Any description",
     })
     .expect((response) => {
-      todoId = response.body.todoId;
+      todoId = response.body.id;
     });
 
   await superdeno(app)
@@ -63,7 +63,7 @@ async function edit_todo_without_title() {
       description: "Any description",
     })
     .expect((response) => {
-      todoId = response.body.todoId;
+      todoId = response.body.id;
     });
 
   await superdeno(app)

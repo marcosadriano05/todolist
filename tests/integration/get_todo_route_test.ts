@@ -5,8 +5,7 @@ import { client } from "/src/main/database.ts";
 async function get_todo_with_id_route_param() {
   await client.connect();
 
-  // deno-lint-ignore no-explicit-any
-  let responseBody: any;
+  let todoId = "";
   await superdeno(app)
     .post("/todo")
     .set("Content-Type", "application/json")
@@ -15,16 +14,14 @@ async function get_todo_with_id_route_param() {
       description: "Any description",
     })
     .expect((response) => {
-      if (response.status === 201) {
-        responseBody = response.body;
-      }
       if (response.status !== 201) {
         fail("Status should be 201.");
       }
+      todoId = response.body.id;
     });
 
   await superdeno(app)
-    .get(`/todo/${responseBody.todoId}`)
+    .get(`/todo/${todoId}`)
     .set("Content-Type", "application/json")
     .expect((response) => {
       if (!response.body) {
@@ -33,7 +30,7 @@ async function get_todo_with_id_route_param() {
       if (!response.body.id) {
         fail("Body should has property id.");
       }
-      if (response.body.id !== responseBody.todoId) {
+      if (response.body.id !== todoId) {
         fail("Todo id should be equal to route param id.");
       }
     });

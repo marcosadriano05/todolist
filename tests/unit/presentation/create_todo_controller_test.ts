@@ -70,7 +70,7 @@ describe("CreateTodoController", () => {
 
     assertEquals(response.statusCode, 201);
     assertExists(response.headers);
-    assertExists(response.body.todoId);
+    assertExists(response.body.id);
     assert(
       response.headers.find((header) =>
         header.name === "Location" && header.value
