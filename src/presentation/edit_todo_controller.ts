@@ -13,7 +13,7 @@ export class EditTodoController implements Controller {
       if (!request.params?.id) {
         return badRequest("The route must have an id.");
       }
-      if (!request.body) {
+      if (!request.body || Object.keys(request.body).length === 0) {
         return badRequest("The body should have one or more params.");
       }
       const editedTodo = await this.editTodoService.perform(request);
