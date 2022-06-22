@@ -1,9 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import {
-  OpineRequest,
-  OpineResponse,
-  ParamsDictionary,
-} from "/external/opine.ts";
+import { OpineRequest, OpineResponse, ParamsDictionary } from "/deps/opine.ts";
 
 import { Controller, HttpRequest } from "/src/presentation/controller.ts";
 

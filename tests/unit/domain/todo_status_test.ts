@@ -1,4 +1,4 @@
-import { assertEquals, beforeEach, describe, it } from "/external/tests.ts";
+import { assertEquals, beforeEach, describe, it } from "/deps/tests.ts";
 
 import { TodoStatus } from "/src/domain/todo/todo_status.ts";
 

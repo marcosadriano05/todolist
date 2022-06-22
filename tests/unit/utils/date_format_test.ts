@@ -1,4 +1,4 @@
-import { assertEquals, describe, it } from "/external/tests.ts";
+import { assertEquals, describe, it } from "/deps/tests.ts";
 import { formatToDatetime } from "/src/utils/date_format.ts";
 
 describe("FormatDate", () => {

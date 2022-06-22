@@ -8,7 +8,7 @@ import {
   returnsNext,
   spy,
   stub,
-} from "/external/tests.ts";
+} from "/deps/tests.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 import { Todo, TodoType } from "/src/domain/todo/todo.ts";

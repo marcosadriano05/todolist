@@ -5,8 +5,8 @@ import {
   beforeEach,
   describe,
   it,
-} from "/external/tests.ts";
-import { v4 } from "/external/uuid.ts";
+} from "/deps/tests.ts";
+import { v4 } from "/deps/uuid.ts";
 import { Todo } from "/src/domain/todo/todo.ts";
 import { TodoList } from "/src/domain/todo_list/todo_list.ts";
 import { TodoListError } from "/src/domain/todo_list/todo_list_error.ts";
