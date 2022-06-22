@@ -1,4 +1,4 @@
-import { fail, superdeno } from "/external/tests.ts";
+import { fail, superdeno } from "/deps/tests.ts";
 
 import { app } from "/src/main/app.ts";
 

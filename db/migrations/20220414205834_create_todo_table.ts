@@ -1,8 +1,12 @@
-import { nessie } from "../../deps.ts";
+import {
+  AbstractMigration,
+  ClientPostgreSQL,
+  Info,
+} from "../../deps/nessie.ts";
 
-export default class extends nessie.AbstractMigration<nessie.ClientPostgreSQL> {
+export default class extends AbstractMigration<ClientPostgreSQL> {
   /** Runs on migrate */
-  async up(info: nessie.Info): Promise<void> {
+  async up(info: Info): Promise<void> {
     await this.client.queryArray(`CREATE TABLE todo (
 			id UUID,
 			title VARCHAR(255),
@@ -15,7 +19,7 @@ export default class extends nessie.AbstractMigration<nessie.ClientPostgreSQL> {
   }
 
   /** Runs on rollback */
-  async down(info: nessie.Info): Promise<void> {
+  async down(info: Info): Promise<void> {
     await this.client.queryArray("DROP TABLE todo;");
   }
 }

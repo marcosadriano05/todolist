@@ -5,7 +5,7 @@ import {
   beforeEach,
   describe,
   it,
-} from "/external/tests.ts";
+} from "/deps/tests.ts";
 import { Todo, TodoType } from "/src/domain/todo/todo.ts";
 import { HttpRequest } from "/src/presentation/controller.ts";
 

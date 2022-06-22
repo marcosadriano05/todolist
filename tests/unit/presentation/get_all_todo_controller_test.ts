@@ -8,7 +8,7 @@ import {
   it,
   returnsNext,
   stub,
-} from "/external/tests.ts";
+} from "/deps/tests.ts";
 import { GetAllTodoController } from "/src/presentation/get_all_todo_controller.ts";
 import { GetAllService } from "/src/services/todo_service.ts";
 

@@ -2,7 +2,7 @@ import { TodoType } from "/src/domain/todo/todo.ts";
 import { Controller, HttpRequest, HttpResponse } from "./controller.ts";
 import { GetOneService } from "/src/services/todo_service.ts";
 import { badRequest, notFound, ok, serverError } from "./helpers.ts";
-import { v4 } from "/external/uuid.ts";
+import { v4 } from "/deps/uuid.ts";
 
 export class GetTodoController implements Controller {
   constructor(
